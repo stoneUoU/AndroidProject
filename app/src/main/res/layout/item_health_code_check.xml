@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="96dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/btn_radius_10_white"
+        >
+        <TextView
+            android:id="@+id/stateTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textColor="@color/ylzColorTitleOne"
+            android:text = "通行大数据行程卡"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:id="@+id/isCheckTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="@color/ylzColorTitleThree"
+            android:text = "今日未核验"
+            android:layout_below="@id/stateTv"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/YLZColorMZTCheckView"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"/>
+
+        <Button
+            android:id="@+id/senderButton"
+            android:layout_width="96dp"
+            android:layout_height="36dp"
+            android:textColor="@color/appWhite"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:textSize="14dp"
+            android:background="@drawable/btn_radius_18_blue"
+            android:text="点击核验"/>
+    </RelativeLayout>
+</RelativeLayout>

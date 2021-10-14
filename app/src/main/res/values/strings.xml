@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">AndroidProject</string>
+    <string name="title_activity_recycler">RecyclerActivity</string>
+    <string name="mine_infos">我的信息</string>
+    <string name="nestedScrollerV_infos">nestedScrollerV_infos</string>
+    <string name="load_Mores">上拉加载</string>
+    <string name="mutli_More">多个headerV</string>
+    <string name="mutli_Group">headerV分组</string>
+    <string name="title_activity_test_jpush">TestJpushActivity</string>
+    <string name="master_str">测试下拉</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">我的世界</string>
+    <string name="app_home_title">医疗健康</string>
+    <string name="app_find_title">发现</string>
+</resources>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="188dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/btn_radius_10_white"
+        >
+        <TextView
+            android:id="@+id/stateTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textColor="@color/ylzColorTitleOne"
+            android:text = "信息说明"
+            android:textFontWeight="700"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:id="@+id/sourceLeftTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="@color/ylzColorTitleOne"
+            android:text = ".数据来源："
+            android:layout_below="@id/stateTv"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:id="@+id/sourceRightTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="@color/ylzColorTitleOne"
+            android:layout_gravity="left"
+            android:text = "国家政务服务平台和福建省相关部门。"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/sourceLeftTv"
+            android:layout_alignTop="@id/sourceLeftTv"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:id="@+id/careLeftTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="@color/ylzColorTitleOne"
+            android:text = ".注意事项："
+            android:layout_below="@id/sourceLeftTv"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:id="@+id/careRightTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="@color/ylzColorTitleOne"
+            android:layout_gravity="left"
+            android:text = "使用健康码时不要离开本页面且需本人操作确认。"
+            android:layout_toRightOf="@id/careLeftTv"
+            android:layout_alignTop="@id/careLeftTv"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:id="@+id/rangeLeftTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="@color/ylzColorTitleOne"
+            android:text = ".使用范围："
+            android:layout_below="@id/careLeftTv"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:id="@+id/rangeRightTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="@color/ylzColorTitleOne"
+            android:text = "依托国家政务服务平台，实现跨省（区、市）数据共享和互通互认。"
+            android:layout_toRightOf="@id/rangeLeftTv"
+            android:layout_alignTop="@id/rangeLeftTv"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="left"
+            android:maxLines="2"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="16dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

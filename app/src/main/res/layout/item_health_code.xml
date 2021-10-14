@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="467dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/btn_radius_10_white">
+        <ImageView
+            android:id="@+id/leftIMV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="72dp"
+            android:src="@mipmap/ylz_mzt_left" />
+
+        <ImageView
+            android:id="@+id/rightIMV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="72dp"
+            android:src="@mipmap/ylz_mzt_right" />
+
+        <TextView
+            android:id="@+id/stateTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="健康状况核验 未见异常【绿码】"
+            android:textColor="@color/ylzColorTitleOne"
+            android:textSize="18dp" />
+        <TextView
+            android:id="@+id/secondTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stateTv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="2021-10-09 15:47:18"
+            android:textColor="@color/YLZColorMZTBlueView"
+            android:textSize="24dp"
+            android:textFontWeight="700"/>
+
+        <RelativeLayout
+            android:id="@+id/codeRl"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_below="@id/secondTv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_gradient_code">
+
+            <ImageView
+                android:id="@+id/codeImageView"
+                android:layout_width="230dp"
+                android:layout_height="230dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/btn_radius_12_white"/>
+
+            <ImageView
+                android:id="@+id/logoView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/ylz_mzt_logo"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/codeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/codeRl"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="93405436576578235"
+            android:textColor="@color/ylzColorTitleOne"
+            android:textSize="16dp" />
+
+        <LinearLayout
+            android:id="@+id/midLl"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp">
+
+            <Button
+                android:id="@+id/familyBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/closeIMV"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:text="家人健康码"
+                android:textColor="@color/YLZColorMZTBlueView" />
+
+            <Button
+                android:id="@+id/onlineBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/closeIMV"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:text="在线咨询"
+                android:textColor="@color/YLZColorMZTBlueView" />
+
+            <Button
+                android:id="@+id/serviceBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/closeIMV"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:text="人工客服"
+                android:textColor="@color/YLZColorMZTBlueView" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/dashView"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_above="@id/midLl"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/shape_dash_view"
+            android:layerType="software"></View>
+
+        <Button
+            android:id="@+id/fastBtn"
+            android:layout_width="136dp"
+            android:layout_height="30dp"
+            android:layout_above="@id/dashView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="36dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/btn_radius_15_blue"
+            android:text="创建桌面快捷方式"
+            android:textColor="@color/YLZColorMZTBlueView" />
+
+        <Button
+            android:id="@+id/vaccineButton"
+            android:layout_width="136dp"
+            android:layout_height="30dp"
+            android:layout_above="@id/dashView"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="36dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/btn_radius_15_gold"
+            android:text="接种新冠疫苗x2"
+            android:textColor="@color/YLZColorMZTGoldView" />
+
+    </RelativeLayout>
+</RelativeLayout>
