@@ -79,7 +79,7 @@ public class YLZHealthCodeActivity extends AppCompatActivity implements View.OnC
 
     public void initViews() {
         this.mAdapter = new YLZHealthCodeAdapter(this.mContext,this.styleModels);
-        final AutoSizeLayoutManager layoutManager = new AutoSizeLayoutManager(this.mContext, LinearLayoutManager.VERTICAL,false);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this.mContext, LinearLayoutManager.VERTICAL,false);
         //设置RecyclerView布局
         this.recyclerView.setLayoutManager(layoutManager);
         this.recyclerView.addItemDecoration(new YLZHealthCodeActivity.SpaceItemDecoration(30));

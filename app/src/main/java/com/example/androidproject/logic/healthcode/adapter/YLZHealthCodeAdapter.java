@@ -69,6 +69,8 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
     public final int ITEM_HEALTH_SERVICE = 3;
     public final int ITEM_HEALTH_SOURCE = 4;
 
+    public TextView secondWrapperTv;
+
     public  interface OnItemHealthCodeInfoClickListener {
         void onExcute();
     }
@@ -186,7 +188,6 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
                 }
             });
         } else if (groupPosition == ITEM_HEALTH) {
-
             TextView stateTv = holder.get(R.id.stateTv);
             TextView secondTv = holder.get(R.id.secondTv);
             ImageView codeImageView = holder.get(R.id.codeImageView);
@@ -207,7 +208,8 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date(System.currentTimeMillis());
             secondTv.setText(simpleDateFormat.format(date));
-//            this.timer.schedule(timerTask,0,1000);
+            this.secondWrapperTv = secondTv;
+            this.timer.schedule(timerTask,0,1000);
         } else if (groupPosition == ITEM_HEALTH_CHECK) {
 
         } else if (groupPosition == ITEM_HEALTH_SERVICE) {
@@ -258,6 +260,10 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
         public void handleMessage(Message msg) {
             if (msg.what == 1){
                 Log.d(TAG,"View  View  excute");
+                //设置时间倒计时
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date = new Date(System.currentTimeMillis());
+                secondWrapperTv.setText(simpleDateFormat.format(date));
             }
             super.handleMessage(msg);
         }
