@@ -11,6 +11,7 @@
     tools:context=".logic.login.YLZLoginActivity">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="?android:attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
@@ -79,7 +80,7 @@
             android:id="@+id/line_firstV"
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:background="#000000"
+            android:background="#303133"
             android:layout_below="@id/user_name"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="25dp"
@@ -106,7 +107,7 @@
             android:id="@+id/line_secondV"
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:background="#000000"
+            android:background="#303133"
             android:layout_below="@id/sms_code"
             android:layout_marginTop="-1dp"
             android:layout_marginLeft="25dp"
@@ -116,7 +117,7 @@
             android:id="@+id/smsLoginBtn"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:textColor="#ffffff"
+            android:textColor="#303133"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginTop="50dp"

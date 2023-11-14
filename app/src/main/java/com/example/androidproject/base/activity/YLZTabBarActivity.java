@@ -72,10 +72,10 @@ public class YLZTabBarActivity extends AppCompatActivity {
         .setOnTabClickListener(new EasyNavigationBar.OnTabClickListener() {
             @Override
             public boolean onTabSelectEvent(View view, int position) {
-                if (position == 3) {
-                    Toast.makeText(YLZTabBarActivity.this, "请先登录", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
+//                if (position == 3) {
+//                    Toast.makeText(YLZTabBarActivity.this, "请先登录", Toast.LENGTH_SHORT).show();
+//                    return true;
+//                }
                 return false;
             }
 

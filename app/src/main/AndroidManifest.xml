@@ -24,24 +24,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
-        <activity android:name=".logic.login.YLZLoginActivity"></activity>
+        <activity android:name=".logic.login.YLZLoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity android:name=".logic.home.YLZHomeRecycleActivity" />
         <activity android:name=".logic.mine.YLZMineActivity" />
         <activity android:name=".logic.home.YLZHomeActivity"/>
-<!--        <activity android:name=".base.activity.YLZTabBarActivity"-->
-<!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-        <activity android:name=".logic.healthcode.controller.YLZHealthCodeActivity"
+        <activity android:name=".base.activity.YLZTabBarActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        <activity android:name=".logic.healthcode.controller.YLZHealthCodeActivity"-->
+<!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
     </application>
 
 </manifest>
