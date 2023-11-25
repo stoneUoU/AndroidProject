@@ -10,14 +10,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
+import com.donkingliang.groupedadapter.adapter.GroupedRecyclerViewAdapter;
+import com.donkingliang.groupedadapter.holder.BaseViewHolder;
 import com.donkingliang.groupedadapter.layoutmanger.GroupedGridLayoutManager;
+import com.donkingliang.varieditemdecoration.GridItemDecoration;
 import com.example.androidproject.R;
 import com.example.androidproject.base.extent.MeasureExtent;
 import com.example.androidproject.base.extent.VectorBarExtent;
+import com.example.androidproject.logic.demo.HiGridItemDecoration;
 import com.example.androidproject.logic.demo.adpter.HiRailwayAdapter;
 import com.example.androidproject.logic.message.model.YLZStyleListModel;
 import com.example.androidproject.logic.message.model.YLZStyleModel;
+import com.example.androidproject.logic.mine.YLZMineActivity;
+import com.example.androidproject.logic.mine.YLZMineFragment;
+import com.example.androidproject.logic.mine.adapter.YLZMineActivityAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +58,7 @@ public class HiRailwayActivity extends AppCompatActivity {
     }
 
     private void initDatas() {
-        for (int i = 0;i<3;i++) {
+        for (int i = 0;i<4;i++) {
             YLZStyleListModel model;
             List<YLZStyleModel> list = new ArrayList();;
             model = new YLZStyleListModel(i,"i"+i,1,list);
@@ -63,19 +71,34 @@ public class HiRailwayActivity extends AppCompatActivity {
         this.mAdapter = new HiRailwayAdapter(this.mContext,this.styleModels);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this.mContext, LinearLayoutManager.VERTICAL,false);
         //设置RecyclerView布局
-        GroupedGridLayoutManager gridLayoutManager = new GroupedGridLayoutManager(mContext, 3, this.mAdapter) {
+        GroupedGridLayoutManager gridLayoutManager = new GroupedGridLayoutManager(mContext, 12, this.mAdapter) {
             @Override
             public int getChildSpanSize(int groupPosition, int childPosition) {
-                if(groupPosition == 0){
+                if (groupPosition == 0) {
+                    return 12;
+                } else if (groupPosition == 1) {
+                    return 6;
+                } else if (groupPosition == 2) {
+                    return 4;
+                } else {
                     return 3;
                 }
-                return super.getChildSpanSize(groupPosition, childPosition);
             }
         };
+//        thisrecyclerView.addItemDecoration(new HiGridItemDecoration(mContext));
+        this.recyclerView.addItemDecoration(new HiRailwayActivity.SpaceItemDecoration(32));
         this.recyclerView.setLayoutManager(gridLayoutManager);
-        this.recyclerView.addItemDecoration(new HiRailwayActivity.SpaceItemDecoration(10));
         this.recyclerView.setAdapter(this.mAdapter);
-
+//        this.mAdapter.setOnHeaderClickListener((GroupedRecyclerViewAdapter adapter, BaseViewHolder holder, int groupPosition)-> {
+//            Log.d(TAG, "initViews: "+ groupPosition);
+//        });
+        this.mAdapter.setOnHeaderClickListener(new YLZMineActivityAdapter.OnHeaderClickListener() {
+            @Override
+            public void onHeaderClick(GroupedRecyclerViewAdapter adapter, BaseViewHolder holder, int groupPosition) {
+                Toast.makeText(mContext, "组头：groupPosition = " + groupPosition,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
         this.mAdapter.setOnItemClickListener((String str) -> {
             Log.d(TAG, "this.mAdapter.setOnItemClickListener:"+str);
         });
@@ -89,8 +112,14 @@ public class HiRailwayActivity extends AppCompatActivity {
         @Override
         public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
             int viewType =  parent.getAdapter().getItemViewType(parent.getChildLayoutPosition(view));
-            outRect.top = MeasureExtent.px2dip(mContext,0);
-            outRect.bottom = MeasureExtent.px2dip(mContext,0);
+            if (viewType == mAdapter.HEADER_COMMON) {
+                outRect.left = 0;
+            } else {
+                outRect.top = space;
+                outRect.left = space;
+                outRect.right = space;
+                outRect.bottom = space;
+            }
         }
     }
 }

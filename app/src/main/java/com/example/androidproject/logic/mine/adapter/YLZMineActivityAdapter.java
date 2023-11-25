@@ -77,7 +77,7 @@ public class YLZMineActivityAdapter extends GroupedRecyclerViewAdapter {
         holder.setText(R.id.text1, "我是子视图（childView）");
     }
     public void setMDatas(List<RecyclerBean> datas) {
-        mDatas = datas;
+        this.mDatas = datas;
         notifyDataSetChanged();
     }
 }

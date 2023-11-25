@@ -96,9 +96,8 @@ public class YLZMineActivity extends AppCompatActivity {
     }
 
     private void initDatas() {
-        RecyclerBean recyclerBean;
         for(int i = 0;i<2;i++){
-            recyclerBean = new RecyclerBean(6,"我是描述========"+i,"我是电话号码"+i,"15717914505","oooooo");
+            RecyclerBean recyclerBean = new RecyclerBean(6,"我是描述========"+i,"我是电话号码"+i,"15717914505","oooooo");
             mDatas.add(recyclerBean);
         }
         mAdapter.setMDatas(mDatas);

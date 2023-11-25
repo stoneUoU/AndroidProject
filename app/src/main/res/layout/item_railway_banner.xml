@@ -2,16 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="120dp">
-    <View
-        android:id="@+id/bannner"
+    <com.youth.banner.Banner
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/mBanner"
+        android:layout_width="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft = "16dp"
-        android:layout_marginRight = "16dp"
-        android:layout_marginTop = "16dp"
-        android:layout_marginBottom = "16dp"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@drawable/btn_radius_15_blue"/>
+        android:layout_alignParentBottom="true"
+        android:layout_height="0dp"/>
 </RelativeLayout>

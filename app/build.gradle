@@ -45,7 +45,9 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 
-    implementation 'com.github.donkingliang:GroupedRecyclerViewAdapter:2.4.1'
+    implementation 'com.github.donkingliang:GroupedRecyclerViewAdapter:2.4.3'
+    //    implementation 'com.github.donkingliang:VariedItemDecoration:1.0.0'
+    implementation 'com.github.donkingliang:VariedItemDecoration:1.0.0-support'
     implementation 'com.github.Vincent7Wong:EasyNavigation:2.0.5'
 
     implementation  'com.scwang.smart:refresh-layout-kernel:2.0.3'      //核心必须依赖
