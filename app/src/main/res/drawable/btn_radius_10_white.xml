@@ -4,5 +4,5 @@
     <!--设置背景色-->
     <solid android:color="@color/appWhite"/>
     <!--设置圆角-->
-    <corners android:radius="18dp" />
+    <corners android:radius="8dp" />
 </shape>

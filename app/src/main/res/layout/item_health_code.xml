@@ -64,7 +64,7 @@
                 android:layout_width="230dp"
                 android:layout_height="230dp"
                 android:layout_centerInParent="true"
-                android:background="@drawable/btn_radius_12_white"/>
+                android:background="@drawable/btn_radius_12_white" />
 
             <ImageView
                 android:id="@+id/logoView"
@@ -137,30 +137,35 @@
             android:background="@drawable/shape_dash_view"
             android:layerType="software"></View>
 
-        <Button
-            android:id="@+id/fastBtn"
-            android:layout_width="136dp"
+        <LinearLayout
+            android:id="@+id/btnGroup"
+            android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_above="@id/dashView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="36dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="12dp">
+        <Button
+            android:id="@+id/fastBtn"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="16dp"
             android:background="@drawable/btn_radius_15_blue"
             android:text="创建桌面快捷方式"
             android:textColor="@color/YLZColorMZTBlueView" />
 
         <Button
             android:id="@+id/vaccineButton"
-            android:layout_width="136dp"
+            android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_above="@id/dashView"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="36dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
             android:background="@drawable/btn_radius_15_gold"
             android:text="接种新冠疫苗x2"
             android:textColor="@color/YLZColorMZTGoldView" />
-
+        </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>
