@@ -44,8 +44,8 @@ public class HiDemoActivity extends AppCompatActivity implements View.OnClickLis
         VectorBarExtent.setToolStatusBarColor(this,view,R.color.colorF3F6FD,true);
         ButterKnife.bind(this);
 
-        title.setText("厦门健康码");
-        title.setTextColor(getResources().getColor(R.color.appOrange));
+        this.title.setText("厦门健康码");
+        this.title.setTextColor(getResources().getColor(R.color.appOrange));
         this.scanImageView.setImageDrawable(getResources().getDrawable(R.mipmap.app_login_pic));
 
         this.moreButton.setOnClickListener(this);
