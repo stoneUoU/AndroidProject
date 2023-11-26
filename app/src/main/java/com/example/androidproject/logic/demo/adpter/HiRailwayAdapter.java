@@ -39,6 +39,7 @@ public class HiRailwayAdapter extends GroupedRecyclerViewAdapter {
     public final int ITEM_BANNER = 0;
     public final int ITEM_HEALTH = 1;
     public final int ITEM_SHOP = 2;
+    public final int ITEM_DETLA = 4;
     public final int HEADER_COMMON = 3;
 
     public  interface OnItemHealthCodeInfoClickListener {
@@ -119,6 +120,9 @@ public class HiRailwayAdapter extends GroupedRecyclerViewAdapter {
         if (groupPosition == 0) {
             return ITEM_BANNER;
         } else if (groupPosition == 1) {
+            if (childPosition == 0) {
+                return ITEM_DETLA;
+            }
             return ITEM_HEALTH;
         } else {
             return ITEM_SHOP;
@@ -130,7 +134,9 @@ public class HiRailwayAdapter extends GroupedRecyclerViewAdapter {
         if (viewType == ITEM_BANNER) {
             return R.layout.item_railway_banner;
         } else if (viewType == ITEM_HEALTH) {
-            return R.layout.item_railway_health;
+            return R.layout.item_railway_func;
+        } else if (viewType == ITEM_DETLA) {
+            return R.layout.item_railway_detla;
         } else {
             return R.layout.item_railway_shop;
         }
@@ -160,12 +166,12 @@ public class HiRailwayAdapter extends GroupedRecyclerViewAdapter {
                 }
             });
         } else if (groupPosition == ITEM_HEALTH)  {
-            View showButton = (View) holder.get(R.id.bannner);
-            showButton.setOnClickListener(v -> {
-                if (this.healthCodeInfoClickListener != null) {
-                    this.healthCodeInfoClickListener.onExcute("ITEM_HEALTH");
-                }
-            });
+//            View showButton = (View) holder.get(R.id.bannner);
+//            showButton.setOnClickListener(v -> {
+//                if (this.healthCodeInfoClickListener != null) {
+//                    this.healthCodeInfoClickListener.onExcute("ITEM_HEALTH");
+//                }
+//            });
         } else{
             View showButton = (View) holder.get(R.id.bannner);
             showButton.setOnClickListener(v -> {

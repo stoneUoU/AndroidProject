@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginLeft="4dp"
+android:layout_weight="1"
+android:background="@drawable/btn_radius_10_white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+        <ImageView
+            android:id="@+id/scanImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/btn_radius_18_red" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/appWhite"
+            android:text = "constraintlayout" />
+    </RelativeLayout>
+
+
+<Button
+    android:id="@+id/scanBtn"
+    android:layout_width="48dp"
+    android:layout_height="24dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/relativeLayout"
+    android:background="@drawable/btn_radius_15_blue"
+    android:text="推荐"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:textColor="@color/YLZColorMZTBlueView" />
+
+<Button
+    android:id="@+id/paddingButton"
+    android:layout_width="64dp"
+    android:layout_height="24dp"
+    app:layout_constraintLeft_toRightOf="@id/scanBtn"
+    app:layout_constraintTop_toTopOf="@id/scanBtn"
+    android:layout_marginLeft="8dp"
+    android:background="@drawable/btn_radius_15_gold"
+    android:text="库存999"
+    android:textColor="@color/YLZColorMZTGoldView"/>
+
+<TextView
+    android:id="@+id/nameTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/scanBtn"
+    app:layout_constraintLeft_toLeftOf="parent"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:textStyle="normal"
+    android:textSize="14sp"
+    android:ellipsize="end"
+    android:singleLine="true"
+    android:textColor="@color/ylzColorTitleOne"
+    android:text = "福建八闽健康码福建八闽健康码福建八闽健康码" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/botLayout"
+        app:layout_constraintTop_toBottomOf="@id/nameTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@id/nameTitle">
+        <TextView
+            android:id="@+id/priceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="8dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:textColor="@color/appOrange"
+            android:text = "$48.0" />
+
+        <TextView
+            android:id="@+id/saleTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/ylzColorTitleOne"
+            android:text = "销量：120" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
