@@ -85,7 +85,7 @@ dependencies {
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.0'//微信官方依赖库，必选
 
     implementation 'com.google.zxing:core:3.4.1'
-
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
     implementation 'com.github.cymchad:baserecyclerviewadapterhelper:3.0.6'
 //    http://www.esjson.com/jsontopojo.html    java生成实体类
 }
