@@ -144,6 +144,9 @@ public class HiRailwayAdapter extends GroupedRecyclerViewAdapter {
 
     @Override
     public void onBindHeaderViewHolder(BaseViewHolder holder, int groupPosition) {
+
+        TextView textView = holder.get(R.id.emptyTV);
+        textView.setText("iOS开发工程师");
     }
 
     @Override

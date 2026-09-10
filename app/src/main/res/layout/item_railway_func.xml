@@ -55,7 +55,6 @@
             android:layout_marginLeft="8dp"
             android:layout_alignTop="@id/recommandBtn"
             android:layout_toRightOf="@id/recommandBtn"
-            android:layout_below="@id/codeImageView"
             android:background="@drawable/btn_radius_15_gold"
             android:text="库存999"
             android:textColor="@color/YLZColorMZTGoldView"/>
@@ -100,8 +99,8 @@
                 android:textStyle="normal"
                 android:textSize="12sp"
                 android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textAlignment="viewEnd"
+                android:textAlignment="textEnd"
+                android:layout_gravity="center_vertical"
                 android:textColor="@color/ylzColorTitleOne"
                 android:text = "销量：120" />
 
