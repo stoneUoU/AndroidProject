@@ -79,8 +79,12 @@ public class YLZMineFragmentAdapter extends GroupedRecyclerViewAdapter {
     }
 
     @Override
-    public boolean hasFooter(int groupPosition) {
-        return false;
+    public int getHeaderViewType(int groupPosition){
+        if(groupPosition == 0){
+            return HEADER_BANNER;
+        }else{
+            return HEADER_COMMON;
+        }
     }
 
     @Override
@@ -92,35 +96,6 @@ public class YLZMineFragmentAdapter extends GroupedRecyclerViewAdapter {
         }
     }
 
-    @Override
-    public int getFooterLayout(int viewType) {
-        return R.layout.footer_for_market;
-    }
-
-    @Override
-    public int getChildLayout(int viewType) {
-        if(viewType == ITEM_PRESELL){
-            return R.layout.item_for_presell_market;
-        }else{
-            return R.layout.item_for_brust_market;
-        }
-    }
-    @Override
-    public int getHeaderViewType(int groupPosition){
-        if(groupPosition == 0){
-            return HEADER_BANNER;
-        }else{
-            return HEADER_COMMON;
-        }
-    }
-    @Override
-    public int getChildViewType(int groupPosition, int childPosition) {
-        if(groupPosition == 0){
-            return ITEM_PRESELL;
-        }else{
-            return ITEM_BRUST;
-        }
-    }
     @Override
     public void onBindHeaderViewHolder(BaseViewHolder holder, int groupPosition) {
         if(groupPosition == 0){
@@ -145,8 +120,34 @@ public class YLZMineFragmentAdapter extends GroupedRecyclerViewAdapter {
     }
 
     @Override
+    public boolean hasFooter(int groupPosition) {
+        return false;
+    }
+
+    @Override
+    public int getFooterLayout(int viewType) {
+        return R.layout.footer_for_market;
+    }
+
+    @Override
     public void onBindFooterViewHolder(BaseViewHolder holder, int groupPosition) {
-        holder.setText(R.id.emptyTV, "我是尾视图（headerView）");
+    }
+
+    @Override
+    public int getChildLayout(int viewType) {
+        if(viewType == ITEM_PRESELL){
+            return R.layout.item_for_presell_market;
+        }else{
+            return R.layout.item_for_brust_market;
+        }
+    }
+    @Override
+    public int getChildViewType(int groupPosition, int childPosition) {
+        if(groupPosition == 0){
+            return ITEM_PRESELL;
+        }else{
+            return ITEM_BRUST;
+        }
     }
 
     @Override

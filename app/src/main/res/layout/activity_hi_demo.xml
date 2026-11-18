@@ -65,30 +65,98 @@
         android:layout_marginRight = "16dp"
         android:layout_marginTop = "16dp"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@drawable/btn_radius_8_909fb8"/>
+        android:layout_height="60dp"
+        android:background="@drawable/btn_radius_18_red"/>
+
+    <TextView
+        android:id="@+id/bannerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/bannner"
+        app:layout_constraintBottom_toBottomOf="@id/bannner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:text = " Banner Loop " />
+
+    <RelativeLayout
+    android:id="@+id/carouselLayout"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/bannner"
+    android:layout_marginLeft = "16dp"
+    android:layout_marginRight = "16dp"
+    android:layout_marginTop = "8dp"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+        <ImageView
+            android:id="@+id/carouselContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_radius_18_blue" />
+        <TextView
+            android:id="@+id/carouselTitleContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/appWhite"
+            android:text = "Carousel" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/carouselConst"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/carouselLayout"
+        android:layout_marginLeft = "16dp"
+        android:layout_marginRight = "16dp"
+        android:layout_marginTop = "8dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/btn_radius_18_red" />
+    <TextView
+        android:id="@+id/carouselTitleConst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/carouselConst"
+        app:layout_constraintBottom_toBottomOf="@id/carouselConst"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/appWhite"
+        android:text = "Carousel" />
+
     <LinearLayout
         android:id="@+id/btnGroup"
         android:layout_width="match_parent"
-        android:layout_height="264dp"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bannner"
+        app:layout_constraintTop_toBottomOf="@id/carouselConst"
         android:layout_marginLeft = "16dp"
         android:layout_marginRight = "16dp"
-        android:layout_marginTop = "16dp">
+        android:layout_marginTop = "8dp">
+
         <RelativeLayout
             android:id="@+id/fastBtn"
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginRight="4dp"
             android:clipChildren="true"
             android:background="@drawable/btn_radius_10_white">
             <ImageView
                 android:id="@+id/codeImageView"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="120dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/btn_radius_8_909fb8" />
@@ -129,7 +197,7 @@
                 android:textStyle="normal"
                 android:textSize="14sp"
                 android:ellipsize="end"
-                android:singleLine="true"
+                android:singleLine="false"
                 android:textColor="@color/ylzColorTitleOne"
                 android:text = "福建八闽健康码福建八闽健康码福建八闽健康码" />
 
@@ -138,7 +206,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_below="@id/shopTitle">
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_below="@id/shopTitle"
+                android:layout_gravity="center_vertical">
                 <TextView
                     android:id="@+id/priceTitle"
                     android:layout_width="wrap_content"
@@ -146,20 +217,24 @@
                     android:layout_marginLeft="8dp"
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    android:layout_weight="1"
+                    android:gravity="start"
                     android:textColor="@color/appOrange"
                     android:text = "$48.0" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                />
 
                 <TextView
                     android:id="@+id/saleTitle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginRight="8dp"
                     android:textStyle="normal"
                     android:textSize="12sp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:textAlignment="viewEnd"
+                    android:gravity="center_vertical"
                     android:textColor="@color/ylzColorTitleOne"
                     android:text = "销量：120" />
 
@@ -171,7 +246,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/vaccineButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:layout_weight="1"
             android:background="@drawable/btn_radius_10_white">
@@ -179,7 +254,7 @@
             <ImageView
                 android:id="@+id/scanImageView"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="120dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -210,21 +285,194 @@
 
             <TextView
                 android:id="@+id/nameTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/scanBtn"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginLeft="8dp"
+                app:layout_constraintRight_toRightOf = "parent"
                 android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:textStyle="normal"
                 android:textSize="14sp"
                 android:ellipsize="end"
-                android:singleLine="true"
+                android:singleLine="false"
                 android:textColor="@color/ylzColorTitleOne"
                 android:text = "福建八闽健康码福建八闽健康码福建八闽健康码" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/botLayout"
+                app:layout_constraintTop_toBottomOf="@id/nameTitle"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_below="@id/nameTitle">
+                <TextView
+                    android:id="@+id/priceTitleConst"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="8dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/appOrange"
+                    android:text = "$48.0" />
+
+                <TextView
+                    android:id="@+id/saleTitleConst"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:textStyle="normal"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/ylzColorTitleOne"
+                    android:text = "销量：120" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/testLinear"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnGroup"
+        android:layout_marginLeft = "16dp"
+        android:layout_marginRight = "16dp"
+        android:background="@color/colorAccent"
+        android:layout_marginTop = "8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <View
+            android:id="@+id/testLeftLinear"
+            android:layout_marginLeft = "16dp"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:background="@color/YLZColorMZTGreenView"/>
+<!--        <View-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"/>-->
+
+        <TextView
+            android:id="@+id/titleLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textColor="@color/appWhite"
+            android:layout_weight="1"
+            android:text = "Title" />
+
+        <View
+            android:id="@+id/testRightLinear"
+            android:layout_marginRight = "16dp"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:background="@color/YLZColorMZTOrangeView"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+    android:id="@+id/testRela"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/testLinear"
+    android:layout_marginLeft = "16dp"
+    android:layout_marginRight = "16dp"
+    android:layout_marginTop = "8dp"
+    android:layout_width="match_parent"
+    android:background="@color/YLZColorMZTGradientThreeView"
+    android:layout_height="60dp">
+        <View
+            android:id="@+id/testLeftRela"
+            android:layout_marginLeft = "16dp"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:background="@color/YLZColorMZTGreenView"/>
+
+        <TextView
+            android:id="@+id/titleRela"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/appWhite"
+            android:text = "Title" />
+
+        <View
+            android:id="@+id/testRightRela"
+            android:layout_marginRight = "16dp"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/YLZColorMZTOrangeView"/>
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/testConst"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/testRela"
+        android:layout_marginLeft = "16dp"
+        android:layout_marginRight = "16dp"
+        android:layout_marginTop = "8dp"
+        android:layout_width="match_parent"
+        android:background="@color/purple_200"
+        android:layout_height="60dp">
+        <View
+            android:id="@+id/testLeftConst"
+            android:layout_marginLeft = "16dp"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/YLZColorMZTGreenView"/>
+
+        <TextView
+            android:id="@+id/titleConst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/appWhite"
+            android:text = "Title" />
+
+        <View
+            android:id="@+id/testRightConst"
+            android:layout_marginRight = "16dp"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/YLZColorMZTOrangeView"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

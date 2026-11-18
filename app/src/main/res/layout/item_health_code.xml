@@ -98,8 +98,6 @@
                 android:id="@+id/familyBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/closeIMV"
-                android:layout_alignParentRight="true"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:text="家人健康码"
@@ -109,8 +107,6 @@
                 android:id="@+id/onlineBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/closeIMV"
-                android:layout_alignParentRight="true"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:text="在线咨询"
@@ -120,8 +116,6 @@
                 android:id="@+id/serviceBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/closeIMV"
-                android:layout_alignParentRight="true"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:text="人工客服"
@@ -144,28 +138,27 @@
             android:layout_above="@id/dashView"
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="12dp">
-        <Button
-            android:id="@+id/fastBtn"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="16dp"
-            android:background="@drawable/btn_radius_15_blue"
-            android:text="创建桌面快捷方式"
-            android:textColor="@color/YLZColorMZTBlueView" />
+            <Button
+                android:id="@+id/fastBtn"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/btn_radius_15_gold"
+                android:text="创建桌面快捷方式"
+                android:textColor="@color/YLZColorMZTBlueView" />
 
-        <Button
-            android:id="@+id/vaccineButton"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="16dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_radius_15_gold"
-            android:text="接种新冠疫苗x2"
-            android:textColor="@color/YLZColorMZTGoldView" />
+            <Button
+                android:id="@+id/vaccineButton"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_radius_15_gold"
+                android:text="接种新冠疫苗x2"
+                android:textColor="@color/YLZColorMZTGoldView" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

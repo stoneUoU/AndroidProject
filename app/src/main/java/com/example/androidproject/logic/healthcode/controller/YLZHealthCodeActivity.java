@@ -84,14 +84,13 @@ public class YLZHealthCodeActivity extends AppCompatActivity implements View.OnC
         this.recyclerView.setLayoutManager(layoutManager);
         this.recyclerView.addItemDecoration(new YLZHealthCodeActivity.SpaceItemDecoration(30));
         this.recyclerView.setAdapter(this.mAdapter);
-        this.mAdapter.setOnItemClickListener(() -> {
+        this.mAdapter.setHealthCodeInfoClickListener(() -> {
             mAdapter.clickNum = mAdapter.clickNum+1;
             if (mAdapter.clickNum>2) {
                 mAdapter.clickNum = 0;
             }
             mAdapter.setMDatas(styleModels);
         });
-
         this.moreButton.setOnClickListener(this);
         this.shutButton.setOnClickListener(this);
     }

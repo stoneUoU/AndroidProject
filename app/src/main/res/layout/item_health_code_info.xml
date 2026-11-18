@@ -16,24 +16,30 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:src="@mipmap/ylz_mzt_logo_blue"/>
-        <TextView
-            android:id="@+id/titleMzt"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="福建八闽健康码"
-            android:textSize="18dp"
-            android:textColor="@color/appWhite"
-            android:layout_marginLeft="12dp"
             android:layout_toRightOf="@id/logoIMV"
-             />
-        <Button
-            android:id="@+id/showButton"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
             android:layout_marginLeft="12dp"
-            android:layout_toRightOf="@id/titleMzt"
-            android:onClick="showDetail"
-            android:background="@mipmap/ylz_eye_show"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:id="@+id/titleMzt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="福建八闽健康码"
+                android:textSize="18dp"
+                android:textColor="@color/appWhite"
+                />
+            <Button
+                android:id="@+id/showButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="12dp"
+                android:onClick="showDetail"
+                android:background="@mipmap/ylz_eye_show"/>
+        </LinearLayout>
         <TextView
             android:id="@+id/nameTv"
             android:layout_width="wrap_content"

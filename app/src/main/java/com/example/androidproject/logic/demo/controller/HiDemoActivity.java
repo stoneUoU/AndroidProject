@@ -30,8 +30,8 @@ public class HiDemoActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.shut)
     Button shutButton;
 
-    @BindView(R.id.scanImageView)
-    ImageView scanImageView;
+//    @BindView(R.id.scanImageView)
+//    ImageView scanImageView;
 
 
     @Override
@@ -46,11 +46,11 @@ public class HiDemoActivity extends AppCompatActivity implements View.OnClickLis
 
         this.title.setText("厦门健康码");
         this.title.setTextColor(getResources().getColor(R.color.appOrange));
-        this.scanImageView.setImageDrawable(getResources().getDrawable(R.mipmap.app_login_pic));
+//        this.scanImageView.setImageDrawable(getResources().getDrawable(R.mipmap.app_login_pic));
 
         this.moreButton.setOnClickListener(this);
         this.shutButton.setOnClickListener(this);
-        this.scanImageView.setOnClickListener(this);
+//        this.scanImageView.setOnClickListener(this);
     }
 
     @Override

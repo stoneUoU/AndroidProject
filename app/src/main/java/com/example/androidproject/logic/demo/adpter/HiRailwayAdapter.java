@@ -39,17 +39,21 @@ public class HiRailwayAdapter extends GroupedRecyclerViewAdapter {
     public final int ITEM_BANNER = 0;
     public final int ITEM_HEALTH = 1;
     public final int ITEM_SHOP = 2;
-    public final int ITEM_DETLA = 4;
-    public final int HEADER_COMMON = 3;
+    public final int ITEM_DETLA = 3;
+    public final int HEADER_COMMON = 4;
 
-    public  interface OnItemHealthCodeInfoClickListener {
-        void onExcute(String str);
+    public  interface OnItemClickListener {
+        void onExcuteHealth(String str);
+
+        void onExcuteDetla(String str);
+
+        void onExcuteShop(String str);
     }
 
-    private HiRailwayAdapter.OnItemHealthCodeInfoClickListener healthCodeInfoClickListener;
+    private HiRailwayAdapter.OnItemClickListener clickListener;
 
-    public  void setOnItemClickListener(HiRailwayAdapter.OnItemHealthCodeInfoClickListener listener){
-        this.healthCodeInfoClickListener = listener;
+    public  void setClickListener(HiRailwayAdapter.OnItemClickListener clickListener) {
+        this.clickListener = clickListener;
     }
 
     public HiRailwayAdapter(Context context,List<YLZStyleListModel> mDatas) {
@@ -122,8 +126,9 @@ public class HiRailwayAdapter extends GroupedRecyclerViewAdapter {
         } else if (groupPosition == 1) {
             if (childPosition == 0) {
                 return ITEM_DETLA;
+            } else {
+                return ITEM_HEALTH;
             }
-            return ITEM_HEALTH;
         } else {
             return ITEM_SHOP;
         }
@@ -169,17 +174,26 @@ public class HiRailwayAdapter extends GroupedRecyclerViewAdapter {
                 }
             });
         } else if (groupPosition == ITEM_HEALTH)  {
-//            View showButton = (View) holder.get(R.id.bannner);
-//            showButton.setOnClickListener(v -> {
-//                if (this.healthCodeInfoClickListener != null) {
-//                    this.healthCodeInfoClickListener.onExcute("ITEM_HEALTH");
-//                }
-//            });
+            if (childPosition == 0) {
+                View showButton = (View) holder.get(R.id.scanImageView);
+                showButton.setOnClickListener(v -> {
+                    if (this.clickListener != null) {
+                        this.clickListener.onExcuteHealth("ITEM_HEALTH");
+                    }
+                });
+            } else {
+                View showButton = (View) holder.get(R.id.codeImageView);
+                showButton.setOnClickListener(v -> {
+                    if (this.clickListener != null) {
+                        this.clickListener.onExcuteDetla("ITEM_DETLA");
+                    }
+                });
+            }
         } else{
             View showButton = (View) holder.get(R.id.bannner);
             showButton.setOnClickListener(v -> {
-                if (this.healthCodeInfoClickListener != null) {
-                    this.healthCodeInfoClickListener.onExcute("ITEM_SHOP");
+                if (this.clickListener != null) {
+                    this.clickListener.onExcuteShop("ITEM_SHOP");
                 }
             });
         }

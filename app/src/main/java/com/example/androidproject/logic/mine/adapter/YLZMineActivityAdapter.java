@@ -36,7 +36,7 @@ public class YLZMineActivityAdapter extends GroupedRecyclerViewAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return 2;
+        return 3;
     }
 
     @Override

@@ -127,7 +127,7 @@ public class YLZMineFragment extends Fragment {
             }
         };
         //设置RecyclerView布局
-        recyclerView.addItemDecoration(new SpaceItemDecoration(30));
+        recyclerView.addItemDecoration(new SpaceItemDecoration(24));
         recyclerView.setLayoutManager(gridLayoutManager);
         mAdapter.setOnHeaderClickListener(new YLZMineFragmentAdapter.OnHeaderClickListener() {
             @Override
@@ -139,7 +139,7 @@ public class YLZMineFragment extends Fragment {
         mAdapter.setOnChildClickListener(new YLZMineFragmentAdapter.OnChildClickListener() {
             @Override
             public void onChildClick(GroupedRecyclerViewAdapter adapter, BaseViewHolder holder, int groupPosition, int childPosition) {
-                YLZToast.showShortToast(mContext,"Child：groupPosition = " + groupPosition);
+                YLZToast.showShortToast(mContext,"Child：groupPosition = " + groupPosition + " childPosition = " + childPosition);
             }
         });
         mAdapter.setCarouselCallBack(new YLZMineFragmentAdapter.CarouselCallBack() {

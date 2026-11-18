@@ -5,11 +5,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.donkingliang.groupedadapter.adapter.GroupedRecyclerViewAdapter;
@@ -17,10 +19,12 @@ import com.donkingliang.groupedadapter.holder.BaseViewHolder;
 import com.donkingliang.groupedadapter.layoutmanger.GroupedGridLayoutManager;
 import com.donkingliang.varieditemdecoration.GridItemDecoration;
 import com.example.androidproject.R;
+import com.example.androidproject.base.activity.YLZTabBarActivity;
 import com.example.androidproject.base.extent.MeasureExtent;
 import com.example.androidproject.base.extent.VectorBarExtent;
 import com.example.androidproject.logic.demo.HiGridItemDecoration;
 import com.example.androidproject.logic.demo.adpter.HiRailwayAdapter;
+import com.example.androidproject.logic.login.YLZLoginActivity;
 import com.example.androidproject.logic.message.model.YLZStyleListModel;
 import com.example.androidproject.logic.message.model.YLZStyleModel;
 import com.example.androidproject.logic.mine.YLZMineActivity;
@@ -33,11 +37,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HiRailwayActivity extends AppCompatActivity {
+public class HiRailwayActivity extends AppCompatActivity implements View.OnClickListener {
     private HiRailwayAdapter mAdapter;
     public Context mContext;
     public LayoutInflater mInflater;
     public List<YLZStyleListModel> styleModels;
+
+    @BindView(R.id.logoIMV)
+    ImageView logoIMV;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -51,10 +58,25 @@ public class HiRailwayActivity extends AppCompatActivity {
         setContentView(view);
         VectorBarExtent.setToolStatusBarColor(this,view,R.color.appWhite,true);
         ButterKnife.bind(this);
+        this.initClickListeners();
 
         this.styleModels = new ArrayList<>();
         initViews();
         initDatas();
+    }
+
+    public void initClickListeners() {
+        this.logoIMV.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.logoIMV:
+                Intent intent = new Intent(HiRailwayActivity.this, YLZLoginActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 
     private void initDatas() {
@@ -99,8 +121,28 @@ public class HiRailwayActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-        this.mAdapter.setOnItemClickListener((String str) -> {
-            Log.d(TAG, "this.mAdapter.setOnItemClickListener:"+str);
+//        this.mAdapter.setOnItemClickListener((String str) -> {
+//            Toast.makeText(mContext, "this.mAdapter.setOnItemClickListener:"+str,
+//                    Toast.LENGTH_SHORT).show();
+//        });
+        this.mAdapter.setClickListener(new HiRailwayAdapter.OnItemClickListener() {
+            @Override
+            public void onExcuteHealth(String str) {
+                Toast.makeText(mContext, "this.mAdapter.setOnItemClickListener:"+str,
+                    Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onExcuteDetla(String str) {
+                Toast.makeText(mContext, "this.mAdapter.setOnItemClickListener:"+str,
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onExcuteShop(String str) {
+                Toast.makeText(mContext, "this.mAdapter.setOnItemClickListener:"+str,
+                        Toast.LENGTH_SHORT).show();
+            }
         });
     }
 

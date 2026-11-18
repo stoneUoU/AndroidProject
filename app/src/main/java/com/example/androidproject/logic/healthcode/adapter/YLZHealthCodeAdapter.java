@@ -77,8 +77,8 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
 
     private YLZHealthCodeAdapter.OnItemHealthCodeInfoClickListener healthCodeInfoClickListener;
 
-    public  void setOnItemClickListener(YLZHealthCodeAdapter.OnItemHealthCodeInfoClickListener listener){
-        this.healthCodeInfoClickListener = listener;
+    public  void setHealthCodeInfoClickListener(YLZHealthCodeAdapter.OnItemHealthCodeInfoClickListener healthCodeInfoClickListener){
+        this.healthCodeInfoClickListener = healthCodeInfoClickListener;
     }
 
     public YLZHealthCodeAdapter(Context context,List<YLZStyleListModel> mDatas) {
@@ -103,7 +103,7 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
     }
 
     @Override
-    public int getHeaderLayout(int viewType) { return R.layout.item_group_header; }
+    public int getHeaderLayout(int viewType) { return 0; }
 
     @Override
     public void onBindHeaderViewHolder(BaseViewHolder holder, int groupPosition) {
@@ -116,7 +116,7 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
     }
     @Override
     public int getFooterLayout(int viewType) {
-        if (viewType == ITEM_HEALTH_SOURCE) {
+        if (viewType == ITEM_HEALTH_SOURCE + 100) {
             return R.layout.item_health_special_footer;
         } else {
             return R.layout.item_health_normal_footer;
@@ -124,16 +124,17 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
     }
     @Override
     public int getFooterViewType(int groupPosition) {
+        // 加偏移量，避免和 getChildViewType 返回值冲突导致 ViewHolder 错误复用
         if (groupPosition == 0) {
-            return ITEM_HEALTH_INFO;
+            return ITEM_HEALTH_INFO + 100;
         } else if (groupPosition == 1) {
-            return ITEM_HEALTH;
+            return ITEM_HEALTH + 100;
         } else if (groupPosition == 2) {
-            return ITEM_HEALTH_CHECK;
+            return ITEM_HEALTH_CHECK + 100;
         } else if (groupPosition == 3) {
-            return ITEM_HEALTH_SERVICE;
+            return ITEM_HEALTH_SERVICE + 100;
         } else {
-            return ITEM_HEALTH_SOURCE;
+            return ITEM_HEALTH_SOURCE + 100;
         }
     }
     @Override
@@ -157,17 +158,7 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
     }
     @Override
     public int getChildViewType(int groupPosition, int childPosition) {
-        if (groupPosition == 0) {
-            return ITEM_HEALTH_INFO;
-        } else if (groupPosition == 1) {
-            return ITEM_HEALTH;
-        } else if (groupPosition == 2) {
-            return ITEM_HEALTH_CHECK;
-        } else if (groupPosition == 3) {
-            return ITEM_HEALTH_SERVICE;
-        } else {
-            return ITEM_HEALTH_SOURCE;
-        }
+        return groupPosition;
     }
     @Override
     public void onBindChildViewHolder(BaseViewHolder holder, int groupPosition, int childPosition) {
@@ -209,7 +200,20 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
             Date date = new Date(System.currentTimeMillis());
             secondTv.setText(simpleDateFormat.format(date));
             this.secondWrapperTv = secondTv;
-            this.timer.schedule(timerTask,0,1000);
+            //TimerTask 只能被 schedule 一次，重新绑定时先取消旧任务，再创建新任务
+            if (this.timerTask != null) {
+                this.timerTask.cancel();
+                this.timer.purge();
+            }
+            this.timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    Message message = new Message();
+                    message.what = 1;
+                    handler.sendMessage(message);
+                }
+            };
+            this.timer.schedule(this.timerTask,0,1000);
         } else if (groupPosition == ITEM_HEALTH_CHECK) {
 
         } else if (groupPosition == ITEM_HEALTH_SERVICE) {
@@ -269,14 +273,7 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
         }
     };
     Timer timer = new Timer();
-    TimerTask timerTask = new TimerTask() {
-        @Override
-        public void run() {
-            Message message = new Message();
-            message.what = 1;
-            handler.sendMessage(message);
-        }
-    };
+    TimerTask timerTask;
 
     public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
         private int space;
