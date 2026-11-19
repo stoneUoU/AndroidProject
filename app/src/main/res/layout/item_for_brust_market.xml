@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.example.androidproject.base.view.YLZRoundImageView
         android:id="@+id/imageView"
@@ -9,16 +10,47 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="120dp"/>
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/testLinear"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/imageView"-->
+<!--        android:paddingBottom="16dp"-->
+<!--        android:gravity="start"-->
+<!--        android:orientation="vertical">-->
+<!--        <TextView-->
+<!--            android:id="@+id/nameTv"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:singleLine="false"-->
+<!--            android:textSize="14dp"-->
+<!--            android:textColor="@color/black_87"-->
+<!--            android:gravity="start"-->
+<!--            android:layout_marginTop="7dp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/priceTv"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="12dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:textColor="@color/ylzLightBlueView"-->
+<!--            />-->
+<!--    </LinearLayout>-->
+
     <TextView
         android:id="@+id/nameTv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:ellipsize="end"
+        android:singleLine="false"
         android:textSize="14dp"
         android:textColor="@color/black_87"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView"
+        android:gravity="start"
         android:layout_marginTop="7dp" />
     <TextView
         android:id="@+id/priceTv"
@@ -26,9 +58,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameTv"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:textSize="12dp"
-        android:layout_marginTop="4.5dp"
-        android:textColor="@color/ylzLightBlueView"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginTop="8dp"
+        android:textColor="@color/ylzLightBlueView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

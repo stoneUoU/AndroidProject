@@ -58,8 +58,8 @@ public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.
     public Context mContext;
     private List<YLZTopListModel> mDatas;
 
-    private final String HotSearchAPI = "/provide/news";
-    private YLZHomeFragment.YLZHandler mHandler = new YLZHomeFragment.YLZHandler(this);
+//    private final String HotSearchAPI = "/provide/news";
+//    private YLZHomeFragment.YLZHandler mHandler = new YLZHomeFragment.YLZHandler(this);
     private static final String TAG = "YLZHomeFragment";
 
     @BindView(R.id.toolBarTitle)
@@ -95,7 +95,7 @@ public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.
         this.mDatas =  new ArrayList<YLZTopListModel>();
 
         this.initViews(view);
-        this.initDatas();
+        this.initJson();
 
         return view;
     }
@@ -159,71 +159,95 @@ public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.
         }
     }
 
-    private void initDatas() {
+    void initJson() {
+        String responseStr = "{\"code\":1,\"data\":{\"list\":[{\"title\":\"马斯克小儿子玩具都是中国制造\",\"add_time\":\"2026-11-18 09:00:00\",\"imgs\":[\"https://js.app.meitudata.com/corp-new/image/talents/heart.@a83509f7.png\",\"https://js.app.meitudata.com/corp-new/image/talents/rocket.@e5538365.png\",\"https://js.app.meitudata.com/corp-new/image/talents/earth.@b2485c95.png\"]},{\"title\":\"特朗普:期待同习主席、普京总统会晤\",\"add_time\":\"2026-11-18 09:00:00\",\"imgs\":[\"https://js.app.meitudata.com/corp-new/image/talents/fire.@048f4693.png\",\"https://js.app.meitudata.com/corp-new/image/talents/turn.@5240bf8d.png\",\"https://js.app.meitudata.com/corp-new/image/talents/real.@d03582dd.png\"]},{\"title\":\"我们探求本质、敢说真话，不弄虚作假；同时知行合一、说到做到，不回避问题。\",\"add_time\":\"2026-11-18 09:00:00\",\"imgs\":[\"https://js.app.meitudata.com/corp-new/image/talents/heart.@a83509f7.png\",\"https://js.app.meitudata.com/corp-new/image/talents/rocket.@e5538365.png\",\"https://js.app.meitudata.com/corp-new/image/talents/earth.@b2485c95.png\"]}]}}";
         try {
-            StringBuilder realPath = new StringBuilder();
-            realPath.append(APIServices.API_PATH)
-                    .append(HotSearchAPI)
-                    .append("?page=1&limit=8");
-            APIServices.sendGetRequest(realPath.toString(), "", new Callback() {
-                @Override
-                public void onFailure(Call call, final IOException e) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.e(TAG, "onFailure" + e.getMessage());
-                        }
-                    });
+            Log.d(TAG, responseStr);
+            JSONObject responseJSON = new JSONObject(responseStr);
+            int code = responseJSON.getInt("code");
+            JSONObject dict = responseJSON.getJSONObject("data");
+            if (code == APIServices.CODE_SUCCESS) {
+                this.mDatas.removeAll(this.mDatas);
+                JSONArray data = dict.getJSONArray("list");
+                Gson gson = new Gson();
+                YLZTopListModel model = null;
+                for (int i = 0; i < data.length(); i++) {
+                    JSONObject itemJSON = data.getJSONObject(i);
+                    model = gson.fromJson(itemJSON.toString(), YLZTopListModel.class);
+                    this.mDatas.add(model);
                 }
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    String responseStr = response.body().string();
-                    Message msg = mHandler.obtainMessage();
-                    msg.what = 0;
-                    msg.obj = responseStr;
-                    mHandler.sendMessage(msg);
-                }
-            });
-        } catch (Exception e) {
-            e.getMessage();
+                this.mAdapter.setMDatas(this.mDatas);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
-    private static class YLZHandler extends Handler {
-        private WeakReference<YLZHomeFragment> mReference;
-        public YLZHandler(YLZHomeFragment fragment) {
-            mReference = new WeakReference<YLZHomeFragment>(fragment);
-        }
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case 0:
-                    try {
-                        String responseStr = (String) msg.obj;
-                        Log.d(TAG, responseStr);
-                        JSONObject responseJSON = new JSONObject(responseStr);
-                        int code = responseJSON.getInt("code");
-                        JSONObject dict = responseJSON.getJSONObject("data");
-                        if (code == APIServices.CODE_SUCCESS) {
-                            mReference.get().mDatas.removeAll(mReference.get().mDatas);
-                            JSONArray data = dict.getJSONArray("list");
-                            Gson gson = new Gson();
-                            YLZTopListModel model = null;
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject itemJSON = data.getJSONObject(i);
-                                model = gson.fromJson(itemJSON.toString(), YLZTopListModel.class);
-                                mReference.get().mDatas.add(model);
-                            }
-                            mReference.get().mAdapter.setMDatas(mReference.get().mDatas);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+//    private void initDatas() {
+//        try {
+//            StringBuilder realPath = new StringBuilder();
+//            realPath.append(APIServices.API_PATH)
+//                    .append(HotSearchAPI)
+//                    .append("?page=1&limit=8");
+//            APIServices.sendGetRequest(realPath.toString(), "", new Callback() {
+//                @Override
+//                public void onFailure(Call call, final IOException e) {
+//                    getActivity().runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Log.e(TAG, "onFailure" + e.getMessage());
+//                        }
+//                    });
+//                }
+//                @Override
+//                public void onResponse(Call call, Response response) throws IOException {
+//                    String responseStr = response.body().string();
+//                    Message msg = mHandler.obtainMessage();
+//                    msg.what = 0;
+//                    msg.obj = responseStr;
+//                    mHandler.sendMessage(msg);
+//                }
+//            });
+//        } catch (Exception e) {
+//            e.getMessage();
+//        }
+//    }
+//
+//    private static class YLZHandler extends Handler {
+//        private WeakReference<YLZHomeFragment> mReference;
+//        public YLZHandler(YLZHomeFragment fragment) {
+//            mReference = new WeakReference<YLZHomeFragment>(fragment);
+//        }
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            switch (msg.what) {
+//                case 0:
+//                    try {
+//                        String responseStr = (String) msg.obj;
+//                        Log.d(TAG, responseStr);
+//                        JSONObject responseJSON = new JSONObject(responseStr);
+//                        int code = responseJSON.getInt("code");
+//                        JSONObject dict = responseJSON.getJSONObject("data");
+//                        if (code == APIServices.CODE_SUCCESS) {
+//                            mReference.get().mDatas.removeAll(mReference.get().mDatas);
+//                            JSONArray data = dict.getJSONArray("list");
+//                            Gson gson = new Gson();
+//                            YLZTopListModel model = null;
+//                            for (int i = 0; i < data.length(); i++) {
+//                                JSONObject itemJSON = data.getJSONObject(i);
+//                                model = gson.fromJson(itemJSON.toString(), YLZTopListModel.class);
+//                                mReference.get().mDatas.add(model);
+//                            }
+//                            mReference.get().mAdapter.setMDatas(mReference.get().mDatas);
+//                        }
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//    }
 }

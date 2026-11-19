@@ -97,13 +97,13 @@ public class YLZMineFragment extends Fragment {
         YLZModel model;
         for (int i = 0;i<4;i++) {
             if (i == 0) {
-                model = new YLZModel(i,"美食博主一","https://cdn3-banquan.ituchong.com/weili/smh/914019154323308646.jpeg");
+                model = new YLZModel(i,"用户界面的基础结构。理解和使用不同的布局类型对于创建响应式和用户友好的界面至关重要","https://js.app.meitudata.com/corp-new/image/talents/earth.@b2485c95.png");
             } else if (i == 1) {
-                model = new YLZModel(i,"不屑的小坦克","https://cdn9-banquan.ituchong.com/weili/smh/914195600169762838.jpeg");
+                model = new YLZModel(i,"不屑的小坦克","https://js.app.meitudata.com/corp-new/image/talents/real.@d03582dd.png");
             } else if (i == 2) {
-                model = new YLZModel(i,"国家医保服务平台","https://cdn3-banquan.ituchong.com/weili/smh/913401323278172163.jpeg");
+                model = new YLZModel(i,"国家医保服务平台","https://js.app.meitudata.com/corp-new/image/talents/fire.@048f4693.png");
             } else {
-                model = new YLZModel(i,"哈哈","https://cdn3-banquan.ituchong.com/weili/smh/913445166303936520.jpeg");
+                model = new YLZModel(i,"用户界面的基础结构。理解和使用不同的布局类型对于创建响应式和用户友好的界面至关重要","https://js.app.meitudata.com/corp-new/image/talents/rocket.@e5538365.png");
             }
 
             this.preSellDatas.add(model);

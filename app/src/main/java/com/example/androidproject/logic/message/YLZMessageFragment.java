@@ -129,6 +129,14 @@ public class YLZMessageFragment extends Fragment {
 
         //设置 Header 为 贝塞尔雷达 样式
         refreshLayout.setRefreshHeader(new BezierRadarHeader(mContext).setEnableHorizontalDrag(true));
+        this.mAdapter.setHealthCodeInfoClickListener(() -> {
+            Log.e(TAG,"setHealthCodeInfoClickListener=============");
+            mAdapter.clickNum = mAdapter.clickNum+1;
+            if (mAdapter.clickNum>2) {
+                mAdapter.clickNum = 0;
+            }
+            mAdapter.setMDatas(styleModels);
+        });
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {

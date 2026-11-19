@@ -43,7 +43,14 @@ public class YLZMessageFragmentAdapter extends GroupedRecyclerViewAdapter {
     private List<YLZStyleListModel> mDatas;
     public LayoutInflater mInflater;
     public Context mContext;
-
+    private static final String TAG = "YLZMessageFragmentAdapter";
+    /**
+     * 0 : 绿码
+     * 1 : 橙码
+     * 2 : 红码
+     */
+    public int clickNum = 0;
+    public Boolean isOn = false;
     public final int ITEM_HEALTH_INFO = 0;
     public final int ITEM_HEALTH = 1;
     public final int ITEM_HEALTH_CHECK = 2;
@@ -54,6 +61,16 @@ public class YLZMessageFragmentAdapter extends GroupedRecyclerViewAdapter {
     private YLZHealthCodeServiceAdapter serviceAdapter;
     public List<String> stringModels;
     public TextView secondWrapperTv;
+
+    public  interface OnItemHealthCodeInfoClickListener {
+        void onExcute();
+    }
+
+    private YLZMessageFragmentAdapter.OnItemHealthCodeInfoClickListener healthCodeInfoClickListener;
+
+    public  void setHealthCodeInfoClickListener(YLZMessageFragmentAdapter.OnItemHealthCodeInfoClickListener healthCodeInfoClickListener){
+        this.healthCodeInfoClickListener = healthCodeInfoClickListener;
+    }
 
     public YLZMessageFragmentAdapter(Context context,List<YLZStyleListModel> mDatas) {
         super(context);
@@ -90,7 +107,7 @@ public class YLZMessageFragmentAdapter extends GroupedRecyclerViewAdapter {
     }
     @Override
     public int getFooterLayout(int viewType) {
-        if (viewType == ITEM_HEALTH_SOURCE) {
+        if (viewType == ITEM_HEALTH_SOURCE + 100) {
             return R.layout.item_health_special_footer;
         } else {
             return R.layout.item_health_normal_footer;
@@ -99,15 +116,15 @@ public class YLZMessageFragmentAdapter extends GroupedRecyclerViewAdapter {
     @Override
     public int getFooterViewType(int groupPosition) {
         if (groupPosition == 0) {
-            return ITEM_HEALTH_INFO;
+            return ITEM_HEALTH_INFO + 100;
         } else if (groupPosition == 1) {
-            return ITEM_HEALTH;
+            return ITEM_HEALTH + 100;
         } else if (groupPosition == 2) {
-            return ITEM_HEALTH_CHECK;
+            return ITEM_HEALTH_CHECK + 100;
         } else if (groupPosition == 3) {
-            return ITEM_HEALTH_SERVICE;
+            return ITEM_HEALTH_SERVICE + 100;
         } else {
-            return ITEM_HEALTH_SOURCE;
+            return ITEM_HEALTH_SOURCE + 100;
         }
     }
     @Override
@@ -146,23 +163,57 @@ public class YLZMessageFragmentAdapter extends GroupedRecyclerViewAdapter {
     @Override
     public void onBindChildViewHolder(BaseViewHolder holder, int groupPosition, int childPosition) {
         if (groupPosition == ITEM_HEALTH_INFO) {
-
+            Button showButton = (Button) holder.get(R.id.showButton);
+            Button senderButton = (Button) holder.get(R.id.senderButton);
+            TextView nameTv = (TextView) holder.get(R.id.nameTv);
+            TextView certTv = (TextView) holder.get(R.id.certTv);
+            showButton.setOnClickListener(v -> {
+                isOn = !isOn;
+                nameTv.setText(isOn ? "姓名： 彭于晏":"姓名： 彭*晏");
+                certTv.setText(isOn ? "身份证号： 362324199509185186" : "身份证号： 362324********5186");
+                v.setBackgroundResource(isOn ? R.mipmap.ylz_eye_show:R.mipmap.ylz_eye_hide);
+            });
+            senderButton.setOnClickListener(v -> {
+                if (this.healthCodeInfoClickListener != null) {
+                    this.healthCodeInfoClickListener.onExcute();
+                }
+            });
         } else if (groupPosition == ITEM_HEALTH) {
             TextView stateTv = holder.get(R.id.stateTv);
             TextView secondTv = holder.get(R.id.secondTv);
             ImageView codeImageView = holder.get(R.id.codeImageView);
-            //健康状况核验 强制隔离【绿码】
+            ///健康状况核验 强制隔离【绿码】
             //健康状况核验 建议隔离【橙码】
             //健康状况核验 强制隔离【红码】
-            this.formatDatas(stateTv,"健康状况核验 未见异常【绿码】",7,R.color.YLZColorMZTGreenView);
-            codeImageView.setImageBitmap(YLZQRCodeExtent.createQRCodeBitmap("Hello world", MeasureExtent.dip2px(mContext,230), ContextCompat.getColor(mContext,R.color.YLZColorMZTGreenView), Color.WHITE));
-
+            if (this.clickNum == 0) {
+                this.formatDatas(stateTv,"健康状况核验 未见异常【绿码】",7,R.color.YLZColorMZTGreenView);
+                codeImageView.setImageBitmap(YLZQRCodeExtent.createQRCodeBitmap("Hello world",MeasureExtent.dip2px(mContext,230), ContextCompat.getColor(mContext,R.color.YLZColorMZTGreenView),Color.WHITE));
+            } else if (this.clickNum == 1) {
+                this.formatDatas(stateTv,"健康状况核验 建议隔离【橙码】",7,R.color.YLZColorMZTOrangeView);
+                codeImageView.setImageBitmap(YLZQRCodeExtent.createQRCodeBitmap("Hello world",MeasureExtent.dip2px(mContext,230), ContextCompat.getColor(mContext,R.color.YLZColorMZTOrangeView),Color.WHITE));
+            } else {
+                this.formatDatas(stateTv,"健康状况核验 强制隔离【红码】",7,R.color.YLZColorMZTRedView);
+                codeImageView.setImageBitmap(YLZQRCodeExtent.createQRCodeBitmap("Hello world",MeasureExtent.dip2px(mContext,230), ContextCompat.getColor(mContext,R.color.YLZColorMZTRedView),Color.WHITE));
+            }
             //设置时间倒计时
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date(System.currentTimeMillis());
             secondTv.setText(simpleDateFormat.format(date));
             this.secondWrapperTv = secondTv;
-//            this.timer.schedule(timerTask,0,1000);
+            //TimerTask 只能被 schedule 一次，重新绑定时先取消旧任务，再创建新任务
+            if (this.timerTask != null) {
+                this.timerTask.cancel();
+                this.timer.purge();
+            }
+            this.timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    Message message = new Message();
+                    message.what = 1;
+                    handler.sendMessage(message);
+                }
+            };
+            this.timer.schedule(this.timerTask,0,1000);
         } else if (groupPosition == ITEM_HEALTH_CHECK) {
 
         } else if (groupPosition == ITEM_HEALTH_SERVICE) {
@@ -212,6 +263,7 @@ public class YLZMessageFragmentAdapter extends GroupedRecyclerViewAdapter {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 1){
+                Log.d(TAG,"View  View  excute  ========== ");
                 //设置时间倒计时
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date(System.currentTimeMillis());
@@ -221,14 +273,7 @@ public class YLZMessageFragmentAdapter extends GroupedRecyclerViewAdapter {
         }
     };
     Timer timer = new Timer();
-    TimerTask timerTask = new TimerTask() {
-        @Override
-        public void run() {
-            Message message = new Message();
-            message.what = 1;
-            handler.sendMessage(message);
-        }
-    };
+    TimerTask timerTask;
 
     public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
         private int space;

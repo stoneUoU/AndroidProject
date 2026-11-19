@@ -58,9 +58,9 @@ public class YLZTabBarActivity extends AppCompatActivity {
         navigationBar = findViewById(R.id.navigationBar);
 
         fragments.add(new YLZMineFragment());
-        fragments.add(new YLZMessageFragment());
-        fragments.add(new YLZMineFragment());
         fragments.add(new YLZHomeFragment());
+        fragments.add(new YLZMineFragment());
+        fragments.add(new YLZMessageFragment());
 
         navigationBar.titleItems(tabText)
         .normalIconItems(normalIcon)
