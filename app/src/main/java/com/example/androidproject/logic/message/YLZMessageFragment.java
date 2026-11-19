@@ -26,7 +26,6 @@ import com.example.androidproject.base.activity.YLZTabBarActivity;
 import com.example.androidproject.base.extent.APIServices;
 import com.example.androidproject.base.extent.MeasureExtent;
 import com.example.androidproject.base.extent.YLZToast;
-import com.example.androidproject.base.layoutManage.AutoSizeLayoutManager;
 import com.example.androidproject.logic.home.YLZHomeActivity;
 import com.example.androidproject.logic.home.YLZHomeFragment;
 import com.example.androidproject.logic.home.YLZHomeRecycleActivity;
@@ -121,7 +120,7 @@ public class YLZMessageFragment extends Fragment {
     public void initViews(View view) {
 
         this.mAdapter = new YLZMessageFragmentAdapter(this.mContext,this.styleModels);
-        final AutoSizeLayoutManager layoutManager = new AutoSizeLayoutManager(this.mContext, LinearLayoutManager.VERTICAL,false);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this.mContext, LinearLayoutManager.VERTICAL,false);
         //设置RecyclerView布局
         this.recyclerView.setLayoutManager(layoutManager);
         this.recyclerView.addItemDecoration(new YLZMessageFragment.SpaceItemDecoration(30));

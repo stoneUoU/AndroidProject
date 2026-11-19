@@ -58,7 +58,7 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
 
     //相关服务的Adapter:
     private YLZHealthCodeServiceAdapter serviceAdapter;
-    public List<String> stringModels;
+    public List<String> stringModels = new ArrayList<>();
 
     public Boolean isOn = false;
 
@@ -217,21 +217,23 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
         } else if (groupPosition == ITEM_HEALTH_CHECK) {
 
         } else if (groupPosition == ITEM_HEALTH_SERVICE) {
-            this.stringModels = new ArrayList<>();
             RecyclerView recyclerView =  holder.get(R.id.recyclerView);
-            this.serviceAdapter = new YLZHealthCodeServiceAdapter(this.mContext,this.stringModels);
-            GroupedGridLayoutManager gridLayoutManager = new GroupedGridLayoutManager(mContext, 2, this.serviceAdapter){
-                //重写这个方法 改变子项的SpanSize。
-                //这个跟重写SpanSizeLookup的getSpanSize方法的使用是一样的。
-                @Override
-                public int getChildSpanSize(int groupPosition, int childPosition) {
-                    return super.getChildSpanSize(groupPosition, childPosition);
-                }
-            };
-            //设置RecyclerView布局
-            recyclerView.addItemDecoration(new SpaceItemDecoration(30));
-            recyclerView.setLayoutManager(gridLayoutManager);
-            recyclerView.setAdapter(this.serviceAdapter);
+            //只在首次绑定时初始化，避免重复添加 ItemDecoration、重复创建 Adapter
+            if (this.serviceAdapter == null || recyclerView.getAdapter() != this.serviceAdapter) {
+                this.serviceAdapter = new YLZHealthCodeServiceAdapter(this.mContext,this.stringModels);
+                GroupedGridLayoutManager gridLayoutManager = new GroupedGridLayoutManager(mContext, 2, this.serviceAdapter){
+                    //重写这个方法 改变子项的SpanSize。
+                    //这个跟重写SpanSizeLookup的getSpanSize方法的使用是一样的。
+                    @Override
+                    public int getChildSpanSize(int groupPosition, int childPosition) {
+                        return super.getChildSpanSize(groupPosition, childPosition);
+                    }
+                };
+                //设置RecyclerView布局
+                recyclerView.addItemDecoration(new SpaceItemDecoration(30));
+                recyclerView.setLayoutManager(gridLayoutManager);
+                recyclerView.setAdapter(this.serviceAdapter);
+            }
             this.initServiceDatas();
         } else {
         }
@@ -248,9 +250,9 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
 
     private void initServiceDatas() {
         List<String> datas = Arrays.asList("健康报告","为家人申领","扫张贴码","疫苗接种预约","疫苗接种查询","医保电子凭证","申领张贴码","申领机构张贴码","通信行程卡","疫情防控服务");
-        for (int i = 0;i<datas.size();i++) {
-            this.stringModels.add(datas.get(i));
-        }
+        //先清空，避免每次重新绑定都重复追加同一批数据
+        this.stringModels.clear();
+        this.stringModels.addAll(datas);
         this.serviceAdapter.setMDatas(this.stringModels);
     }
 
@@ -263,7 +265,6 @@ public class YLZHealthCodeAdapter extends GroupedRecyclerViewAdapter {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 1){
-                Log.d(TAG,"View  View  excute");
                 //设置时间倒计时
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date(System.currentTimeMillis());
