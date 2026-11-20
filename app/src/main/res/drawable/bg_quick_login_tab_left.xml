@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--左侧选项卡:选中白色/未选中浅灰,顶部左圆角与卡片圆角保持一致-->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/appWhite" />
+            <corners
+                android:topLeftRadius="16dp"
+                android:topRightRadius="0dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ylzQuickLoginTabGray" />
+            <corners
+                android:topLeftRadius="16dp"
+                android:topRightRadius="0dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+</selector>

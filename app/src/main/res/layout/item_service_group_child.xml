@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/appWhite"
+    android:gravity="center_vertical"
+    android:minHeight="68dp"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="14dp"
+    android:paddingTop="10dp">
+
+    <ImageView
+        android:id="@+id/serviceIconIv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/ic_service_type_elderly" />
+
+    <TextView
+        android:id="@+id/serviceTitleTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_weight="1"
+        android:lineSpacingExtra="3dp"
+        android:maxLines="2"
+        android:textColor="@color/ylzColorTitleOne"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/serviceArrowIv"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginLeft="8dp"
+        app:srcCompat="@drawable/ic_service_arrow" />
+</LinearLayout>

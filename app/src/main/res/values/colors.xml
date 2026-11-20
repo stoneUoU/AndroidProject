@@ -45,4 +45,10 @@
     <color name="color909FB8">#909FB8</color>
     <color name="colorF3F6FD">#F3F6FD</color>
 
+    <!-- 新版快捷登录页(个人登录/单位登录) -->
+    <color name="ylzQuickLoginBlue">#2E6BE6</color>
+    <color name="ylzQuickLoginTabGray">#EEF1F6</color>
+    <color name="ylzQuickLoginInputBg">#F4F6FA</color>
+    <color name="ylzQuickLoginHint">#A6ACB8</color>
+
 </resources>

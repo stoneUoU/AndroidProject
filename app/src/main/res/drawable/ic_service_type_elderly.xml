@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!--养老保险类服务图标:蓝色圆形+拄拐老人(占位图,可替换设计切图)-->
+    <path
+        android:fillColor="#3D7FF0"
+        android:pathData="M12,1.5 C17.8,1.5 22.5,6.2 22.5,12 C22.5,17.8 17.8,22.5 12,22.5 C6.2,22.5 1.5,17.8 1.5,12 C1.5,6.2 6.2,1.5 12,1.5z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12.4,5.3 C13.6,5.3 14.6,6.3 14.6,7.5 C14.6,8.7 13.6,9.7 12.4,9.7 C11.2,9.7 10.2,8.7 10.2,7.5 C10.2,6.3 11.2,5.3 12.4,5.3z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.9"
+        android:strokeLineCap="round"
+        android:pathData="M12.4,10.6 L12.4,14.8" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.9"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M12.4,15.6 L10.8,20 M12.4,15.6 L14,20" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M13.8,12 L16.1,13.6" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M16.6,13.8 L16.6,20" />
+</vector>

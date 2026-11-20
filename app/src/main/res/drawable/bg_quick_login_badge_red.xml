@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!--头部装饰:红色徽标底-->
+    <solid android:color="#D6412C" />
+    <corners android:radius="10dp" />
+</shape>

@@ -101,8 +101,12 @@ public class YLZHomeActivity extends AppCompatActivity {
 //        textView2.setText(stringExtra);
 
         Bundle bundle = getIntent().getExtras();
-        String name = (String) bundle.get("name");
-        String age = (String) bundle.get("age");
+        String name = "";
+        String age = "";
+        if (bundle != null) {
+            name = bundle.getString("name", "");
+            age = bundle.getString("age", "");
+        }
         textView2.setText(name + age);
     }
 
