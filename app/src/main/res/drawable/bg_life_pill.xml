@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!--惠民生活-banner内深蓝胶囊标签-->
+    <solid android:color="#3E6FDE" />
+    <corners android:radius="13dp" />
+</shape>

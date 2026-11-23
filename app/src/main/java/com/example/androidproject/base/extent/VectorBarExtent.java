@@ -6,10 +6,42 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.core.content.ContextCompat;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class VectorBarExtent {
+    /**
+     * 页面统一设置状态栏:状态栏颜色与页面头部一致,并适配状态栏字体颜色
+     * Fragment中需通过宿主Activity调用,多Tab切换时状态栏设置在Window上,各页面需在onResume/setUserVisibleHint中刷新
+     * @param color 颜色资源id
+     * @param dark true状态栏字体为黑色(浅色状态栏),false为白色(深色状态栏)
+     */
+    public static void setStatusBarStyle(Activity activity, View view, int color, boolean dark) {
+        Window window = activity.getWindow();
+        //状态栏颜色(API21+,低于21无变色能力)
+        if (Build.VERSION.SDK_INT >= 21) {
+            window.setStatusBarColor(ContextCompat.getColor(activity, color));
+        }
+        //状态栏字体颜色:API23+用系统标志位,低版本走MIUI/Flyme适配
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            //只增减LIGHT_STATUS_BAR标志,不动其他标志,避免相互覆盖
+            View decorView = window.getDecorView();
+            int visibility = decorView.getSystemUiVisibility();
+            if (dark) {
+                visibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            } else {
+                visibility &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            }
+            decorView.setSystemUiVisibility(visibility);
+        } else {
+            MIUISetStatusBarLightMode(activity, dark);
+            FlymeSetStatusBarLightMode(window, dark);
+        }
+        view.setFitsSystemWindows(true);
+    }
+
     //设置庄状态栏与ToolBar的颜色一致，低于API21无效
     public static void setToolStatusBarColor(Activity activity, View view, int color, boolean setColorBlack){
         //这两个是设置状态栏颜色

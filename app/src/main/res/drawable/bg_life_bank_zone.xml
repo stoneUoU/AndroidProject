@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!--惠民生活-兴业银行专区banner浅蓝渐变-->
+    <gradient
+        android:angle="0"
+        android:startColor="#EDF4FF"
+        android:endColor="#C6DCFB" />
+    <corners android:radius="12dp" />
+</shape>

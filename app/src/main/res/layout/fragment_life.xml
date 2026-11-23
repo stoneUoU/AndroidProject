@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appWhite">
+    android:background="#F4F6FA"
+    android:orientation="vertical"
+    tools:context=".logic.life.YLZLifeFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:drawableTop="@mipmap/ylz_tabbar_middle_cert"
-        android:drawablePadding="12dp"
-        android:gravity="center"
-        android:text="惠民生活\n页面建设中"
-        android:textColor="@color/ylzColorTitleThree"
-        android:textSize="15sp" />
-</FrameLayout>
+    <!--固定标题栏(不随列表滚动)-->
+    <include layout="@layout/item_life_title" />
+
+    <!--EasyNavigationBar为全屏高度,60dp的TabBar浮在内容上层,底部留白需大于TabBar高度-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lifeRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#F4F6FA"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingBottom="88dp"
+        android:scrollbars="none"
+        tools:itemCount="8"
+        tools:listitem="@layout/item_life_banner" />
+</LinearLayout>

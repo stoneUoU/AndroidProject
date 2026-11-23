@@ -1,5 +1,6 @@
 package com.example.androidproject.logic.home;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.example.androidproject.R;
 import com.example.androidproject.base.extent.APIServices;
 import com.example.androidproject.base.extent.MeasureExtent;
+import com.example.androidproject.base.extent.VectorBarExtent;
 import com.example.androidproject.base.layoutManage.AutoSizeLayoutManager;
 import com.example.androidproject.logic.home.adapter.YLZHomeFragmentAdapter;
 import com.example.androidproject.logic.home.model.YLZTopListModel;
@@ -98,6 +100,34 @@ public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.
         this.initJson();
 
         return view;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        //Tab切换为当前页时刷新状态栏(ViewPager模式下切换时回调;view可能尚未创建,需判空)
+        if (isVisibleToUser && isAdded() && getView() != null) {
+            this.setupStatusBar();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //首次创建/从其他页面返回时,只有当前可见页刷新状态栏,避免多Tab互相覆盖
+        if (isAdded() && getUserVisibleHint()) {
+            this.setupStatusBar();
+        }
+    }
+
+    /**
+     * 状态栏颜色与ToolBar一致,并适配MIUI/Flyme状态栏字体颜色(需通过宿主Activity设置)
+     */
+    private void setupStatusBar() {
+        Activity activity = getActivity();
+        if (activity != null) {
+            VectorBarExtent.setStatusBarStyle(activity, getView(), R.color.ylzLightBlueView, false);
+        }
     }
 
     public void initViews(View view) {

@@ -15,8 +15,8 @@
         app:Easy_hasPadding="false"
         app:Easy_navigationBackground="#ffffff"
         app:Easy_tabNormalColor="#4E5969"
-        app:Easy_tabSelectColor="@color/ylzQuickLoginBlue"
-        app:Easy_tabTextSize="12dp"
+        app:Easy_tabSelectColor="@color/appOrangePress"
+        app:Easy_tabTextSize="14sp"
         tools:ignore="MissingConstraints">
     </com.next.easynavigation.view.EasyNavigationBar>
 </androidx.constraintlayout.widget.ConstraintLayout>

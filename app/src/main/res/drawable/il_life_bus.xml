@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="72dp"
+    android:height="52dp"
+    android:viewportWidth="120"
+    android:viewportHeight="80">
+    <!--惠民生活-1分钱乘公交插图(公交车,占位可替换切图)-->
+    <path
+        android:strokeColor="#80FFFFFF"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:pathData="M12,70 H108" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M20,24 H88 C90.2,24 92,25.8 92,28 V61 C92,62.7 90.7,64 89,64 H19 C17.3,64 16,62.7 16,61 V28 C16,25.8 17.8,24 20,24 Z" />
+    <path
+        android:fillColor="#6FA5EF"
+        android:pathData="M16,48 H92 V51.5 H16 Z" />
+    <path
+        android:fillColor="#A9CDF7"
+        android:pathData="M21,30 H37 V43 H21 Z M42,30 H58 V43 H42 Z" />
+    <path
+        android:fillColor="#A9CDF7"
+        android:pathData="M64,30 H82 V64 H64 Z" />
+    <path
+        android:fillColor="#2E4C74"
+        android:pathData="M30,57 a7,7 0 1 0 0.01,0 Z M74,57 a7,7 0 1 0 0.01,0 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,61 a3,3 0 1 0 0.01,0 Z M74,61 a3,3 0 1 0 0.01,0 Z" />
+</vector>

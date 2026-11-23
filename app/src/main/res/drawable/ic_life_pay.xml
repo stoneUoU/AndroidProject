@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="42dp"
+    android:height="42dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!--惠民生活-刷码付款(扫码框)-->
+    <path
+        android:fillColor="#FF9D4D"
+        android:pathData="M7,2.5 L17,2.5 C19.5,2.5 21.5,4.5 21.5,7 L21.5,17 C21.5,19.5 19.5,21.5 17,21.5 L7,21.5 C4.5,21.5 2.5,19.5 2.5,17 L2.5,7 C2.5,4.5 4.5,2.5 7,2.5 Z" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M9,6.5 L7.3,6.5 C6.8,6.5 6.5,6.8 6.5,7.3 L6.5,9" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M15,6.5 L16.7,6.5 C17.2,6.5 17.5,6.8 17.5,7.3 L17.5,9" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M9,17.5 L7.3,17.5 C6.8,17.5 6.5,17.2 6.5,16.7 L6.5,15" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M15,17.5 L16.7,17.5 C17.2,17.5 17.5,17.2 17.5,16.7 L17.5,15" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M6.5,12 L17.5,12" />
+</vector>

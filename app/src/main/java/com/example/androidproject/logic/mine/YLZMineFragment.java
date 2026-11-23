@@ -1,5 +1,6 @@
 package com.example.androidproject.logic.mine;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -22,6 +23,7 @@ import com.donkingliang.groupedadapter.holder.BaseViewHolder;
 import com.donkingliang.groupedadapter.layoutmanger.GroupedGridLayoutManager;
 import com.example.androidproject.R;
 import com.example.androidproject.base.extent.YLZToast;
+import com.example.androidproject.base.extent.VectorBarExtent;
 import com.example.androidproject.logic.home.YLZHomeActivity;
 import com.example.androidproject.logic.home.model.RecyclerBean;
 import com.example.androidproject.logic.mine.adapter.YLZMineFragmentAdapter;
@@ -91,6 +93,34 @@ public class YLZMineFragment extends Fragment {
         this.initViews(view);
         this.initData();
         return view;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        //Tab切换为当前页时刷新状态栏(ViewPager模式下切换时回调;view可能尚未创建,需判空)
+        if (isVisibleToUser && isAdded() && getView() != null) {
+            this.setupStatusBar();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //首次创建/从其他页面返回时,只有当前可见页刷新状态栏,避免多Tab互相覆盖
+        if (isAdded() && getUserVisibleHint()) {
+            this.setupStatusBar();
+        }
+    }
+
+    /**
+     * 状态栏颜色与页面白色标题栏一致,黑色状态栏字体(需通过宿主Activity设置)
+     */
+    private void setupStatusBar() {
+        Activity activity = getActivity();
+        if (activity != null) {
+            VectorBarExtent.setStatusBarStyle(activity, getView(), R.color.appWhite, true);
+        }
     }
 
     public void initData() {

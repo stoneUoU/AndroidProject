@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="88dp"
+    android:height="72dp"
+    android:viewportWidth="120"
+    android:viewportHeight="96">
+    <!--惠民生活-兴业银行专区插图(金币+楼宇,占位可替换切图)-->
+    <path
+        android:fillColor="#F7C64B"
+        android:pathData="M40,46 a11,11 0 1 0 0.01,0 Z M58,62 a11,11 0 1 0 0.01,0 Z" />
+    <path
+        android:fillColor="#FFD76E"
+        android:pathData="M58,44 a11,11 0 1 0 0.01,0 Z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#E8A93C"
+        android:strokeWidth="1.6"
+        android:pathData="M40,51 a5.5,5.5 0 1 0 0.01,0 Z M58,67 a5,5 0 1 0 0.01,0 Z" />
+    <path
+        android:fillColor="#7AA5F3"
+        android:pathData="M88,26 H106 C108.2,26 110,27.8 110,30 V72 H88 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M91,32 h6 v8 h-6 Z M100,32 h6 v8 h-6 Z M91,45 h6 v8 h-6 Z M100,45 h6 v8 h-6 Z M91,45 h6 v8 h-6 Z" />
+    <path
+        android:fillColor="#4C7FE0"
+        android:pathData="M95,60 h6 v12 h-6 Z" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M20,30 V38 M16,34 H24" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M68,18 a2.4,2.4 0 1 0 0.01,0 Z" />
+</vector>

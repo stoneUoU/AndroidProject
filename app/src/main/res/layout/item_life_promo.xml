@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:overScrollMode="never"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--卡片1:1分钱乘公交-->
+        <LinearLayout
+            android:layout_width="176dp"
+            android:layout_height="92dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/bg_life_promo_blue"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="1分钱乘公交"
+                    android:textColor="@color/appWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="公交低至0.01元"
+                    android:textColor="#E6FFFFFF"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_life_promo_pill_blue"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="3dp"
+                    android:text="查看 >"
+                    android:textColor="@color/appWhite"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="58dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="6dp"
+                app:srcCompat="@drawable/il_life_bus"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+        <!--卡片2:福利领券中心-->
+        <LinearLayout
+            android:layout_width="176dp"
+            android:layout_height="92dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/bg_life_promo_orange"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="福利领券中心"
+                    android:textColor="@color/appWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="海南福利享不停"
+                    android:textColor="#E6FFFFFF"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_life_promo_pill_red"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="3dp"
+                    android:text="领券 >"
+                    android:textColor="@color/appWhite"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="58dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="4dp"
+                app:srcCompat="@drawable/il_life_coupon"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+        <!--卡片3:大病救助补贴-->
+        <LinearLayout
+            android:layout_width="176dp"
+            android:layout_height="92dp"
+            android:background="@drawable/bg_life_promo_pink"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="大病救助补贴"
+                    android:textColor="@color/appWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="爱心帮扶暖人心"
+                    android:textColor="#E6FFFFFF"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_life_promo_pill_red"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="3dp"
+                    android:text="申领 >"
+                    android:textColor="@color/appWhite"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="58dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="6dp"
+                app:srcCompat="@drawable/il_life_coupon"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+</HorizontalScrollView>

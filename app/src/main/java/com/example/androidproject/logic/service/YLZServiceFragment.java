@@ -1,5 +1,6 @@
 package com.example.androidproject.logic.service;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.donkingliang.groupedadapter.adapter.GroupedRecyclerViewAdapter;
 import com.donkingliang.groupedadapter.holder.BaseViewHolder;
 import com.example.androidproject.R;
 import com.example.androidproject.base.extent.YLZToast;
+import com.example.androidproject.base.extent.VectorBarExtent;
 import com.example.androidproject.logic.service.adapter.YLZServiceCategoryAdapter;
 import com.example.androidproject.logic.service.adapter.YLZServiceContentAdapter;
 import com.example.androidproject.logic.service.model.YLZServiceCategoryModel;
@@ -93,6 +95,34 @@ public class YLZServiceFragment extends Fragment {
         this.initViews(view);
         this.switchTab(TAB_PERSONAL);
         return view;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        //Tab切换为当前页时刷新状态栏(ViewPager模式下切换时回调;view可能尚未创建,需判空)
+        if (isVisibleToUser && isAdded() && getView() != null) {
+            this.setupStatusBar();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //首次创建/从其他页面返回时,只有当前可见页刷新状态栏,避免多Tab互相覆盖
+        if (isAdded() && getUserVisibleHint()) {
+            this.setupStatusBar();
+        }
+    }
+
+    /**
+     * 状态栏颜色与服务页头部渐变的顶部蓝色一致,白色状态栏字体(需通过宿主Activity设置)
+     */
+    private void setupStatusBar() {
+        Activity activity = getActivity();
+        if (activity != null) {
+            VectorBarExtent.setStatusBarStyle(activity, getView(), R.color.ylzLightBlueView, false);
+        }
     }
 
     private void initViews(View view) {

@@ -25,6 +25,7 @@ import com.example.androidproject.logic.home.YLZHomeFragment;
 import com.example.androidproject.logic.home.YLZHomeRecycleActivity;
 import com.example.androidproject.logic.life.YLZLifeFragment;
 import com.example.androidproject.logic.login.YLZLoginActivity;
+import com.example.androidproject.logic.message.YLZMessageFragment;
 import com.example.androidproject.logic.mine.YLZMineFragment;
 import com.example.androidproject.logic.service.YLZServiceFragment;
 import com.next.easynavigation.view.EasyNavigationBar;
@@ -36,11 +37,11 @@ public class YLZTabBarActivity extends AppCompatActivity {
 
     private EasyNavigationBar navigationBar;
 
-    private String[] tabText = {"首页", "服务", "惠民生活", "我的"};
+    private String[] tabText = {"首页", "发现", "消息", "我的"};
     //未选中icon
-    private int[] selectIcon = {R.drawable.ic_tab_home_blue, R.drawable.ic_tab_service_blue, R.drawable.ic_tab_life_blue, R.drawable.ic_tab_mine_blue};
+    private int[] selectIcon = {R.mipmap.mine_icon_store_click, R.mipmap.icon_shoppingcar_click,  R.mipmap.icon_shoppingcar_click, R.mipmap.mine_icon_mine_click};
     //选中时icon
-    private int[] normalIcon = {R.drawable.ic_tab_home_gray, R.drawable.ic_tab_service_gray, R.drawable.ic_tab_life_gray, R.drawable.ic_tab_mine_gray};
+    private int[] normalIcon = {R.mipmap.mine_icon_store_onclick, R.mipmap.icon_shoppingcar_onclick, R.mipmap.icon_shoppingcar_onclick, R.mipmap.mine_icon_mine_onclick};
 
     private List<Fragment> fragments = new ArrayList<>();
 
@@ -51,16 +52,12 @@ public class YLZTabBarActivity extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.activity_ylztab_bar, null);
         setContentView(view);
 
-        VectorBarExtent.setToolStatusBarColor(this, view, R.color.ylzLightBlueView, false);
-        VectorBarExtent.MIUISetStatusBarLightMode(this, false);
-        VectorBarExtent.FlymeSetStatusBarLightMode(getWindow(), false);
-
         navigationBar = findViewById(R.id.navigationBar);
 
-        fragments.add(new YLZHomeFragment());
+        fragments.add(new YLZMineFragment());
         fragments.add(new YLZServiceFragment());
         fragments.add(new YLZLifeFragment());
-        fragments.add(new YLZMineFragment());
+        fragments.add(new YLZHomeFragment());
 
         navigationBar.titleItems(tabText)
         .normalIconItems(normalIcon)
@@ -95,8 +92,13 @@ public class YLZTabBarActivity extends AppCompatActivity {
             }
         })
         .mode(EasyNavigationBar.NavigationMode.MODE_ADD)
+        //EasyNavigation 2.0.5的Easy_tabTextSize属性有bug(解析时误用默认值12换算,恒为3dp),
+        //这里用builder接口直接设置:Tab文字14sp
+        .textSizeType(EasyNavigationBar.TextSizeType.TYPE_SP)
+        .tabTextSize(14)
         .build();
     }
+
     public EasyNavigationBar getNavigationBar() {
         return navigationBar;
     }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!--惠民生活-白色圆角卡片(银行卡片/三栏条)-->
+    <solid android:color="@color/appWhite" />
+    <corners android:radius="10dp" />
+</shape>

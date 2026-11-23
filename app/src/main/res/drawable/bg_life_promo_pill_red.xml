@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!--惠民生活-享优惠"领券"深红小胶囊-->
+    <solid android:color="#DD3A2B" />
+    <corners android:radius="11dp" />
+</shape>
