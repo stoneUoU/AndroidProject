@@ -89,6 +89,8 @@ dependencies {
 
     implementation 'org.greenrobot:eventbus:3.2.0'
 
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+
     // define a BOM and its version
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
     implementation("com.squareup.okhttp3:okhttp")

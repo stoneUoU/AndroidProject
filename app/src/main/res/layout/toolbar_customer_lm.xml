@@ -1,35 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ConstraintLayout的Toolbar
+左侧点击图标
+中间Activity名
+右侧点击图标
+状态栏高度与工具栏行高分开计算:
+- statusbar占位:沉浸式(LAYOUT_FULLSCREEN)页面经fitsSystemWindows自动等于系统状态栏高度,非沉浸式页面保持0
+- toolbarContentRl:工具栏内容行,固定高度actionBarSize
+-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toolBarRL"
-    android:layout_width="0dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_height="?android:attr/actionBarSize">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/appOrange">
 
-    <ImageView
-        android:id="@+id/toolbarLeftImg"
-        android:layout_width="wrap_content"
+    <!--状态栏高度占位(沉浸式页面由系统insets自动撑起)-->
+    <LinearLayout
+        android:id="@+id/statusbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:paddingLeft="15dp"
-        android:paddingRight="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"/>
-    <TextView
-        android:id="@+id/toolBarTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:layout_centerInParent="true"/>
-    <TextView
-        android:id="@+id/toolBarRight"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingRight="15dp"
-        android:paddingLeft="5dp"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:fitsSystemWindows="true"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <!--工具栏内容行-->
+    <RelativeLayout
+        android:id="@+id/toolbarContentRl"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_below="@+id/statusbar">
+
+        <ImageView
+            android:id="@+id/toolbarLeftImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+        <TextView
+            android:id="@+id/toolBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 </RelativeLayout>

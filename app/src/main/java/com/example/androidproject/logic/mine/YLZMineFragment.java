@@ -26,6 +26,7 @@ import com.example.androidproject.base.extent.YLZToast;
 import com.example.androidproject.base.extent.VectorBarExtent;
 import com.example.androidproject.logic.home.YLZHomeActivity;
 import com.example.androidproject.logic.home.model.RecyclerBean;
+import com.example.androidproject.logic.login.YLZQuickLoginActivity;
 import com.example.androidproject.logic.mine.adapter.YLZMineFragmentAdapter;
 import com.example.androidproject.logic.mine.model.YLZModel;
 import com.scwang.smart.refresh.header.BezierRadarHeader;
@@ -170,6 +171,7 @@ public class YLZMineFragment extends Fragment {
             @Override
             public void onChildClick(GroupedRecyclerViewAdapter adapter, BaseViewHolder holder, int groupPosition, int childPosition) {
                 YLZToast.showShortToast(mContext,"Child：groupPosition = " + groupPosition + " childPosition = " + childPosition);
+                start(mContext);
             }
         });
         mAdapter.setCarouselCallBack(new YLZMineFragmentAdapter.CarouselCallBack() {
@@ -189,6 +191,11 @@ public class YLZMineFragment extends Fragment {
                 refreshLayout.finishRefresh(2000);
             }
         });
+    }
+
+    public static void start(Context context) {
+        Intent intent = new Intent(context, YLZQuickLoginActivity.class);
+        context.startActivity(intent);
     }
 
     @OnClick({R.id.toolBarTitle})

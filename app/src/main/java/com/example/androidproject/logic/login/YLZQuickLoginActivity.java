@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.androidproject.R;
@@ -38,6 +39,10 @@ public class YLZQuickLoginActivity extends AppCompatActivity implements View.OnC
     private static final int TAB_PERSONAL = 0;
     private static final int TAB_UNIT = 1;
 
+    @BindView(R.id.toolBarRL)
+    RelativeLayout mToolBarRL;
+    @BindView(R.id.toolbarLeftImg)
+    ImageView mToolbarLeftImg;
     //个人登录选项卡
     @BindView(R.id.tabPersonalLl)
     LinearLayout tabPersonalLl;
@@ -73,20 +78,15 @@ public class YLZQuickLoginActivity extends AppCompatActivity implements View.OnC
     //当前选中的登录方式
     private int currentTab = TAB_PERSONAL;
 
-    /**
-     * 页面入口
-     */
-    public static void start(Context context) {
-        Intent intent = new Intent(context, YLZQuickLoginActivity.class);
-        context.startActivity(intent);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ylzquick_login);
         ButterKnife.bind(this);
         mContext = this;
+        mToolBarRL.setBackgroundColor(Color.TRANSPARENT);
+        mToolbarLeftImg.setImageDrawable(getResources().getDrawable(R.mipmap.icon_return_h32));
+        mToolbarLeftImg.setBackground(getResources().getDrawable(R.drawable.selector_orangepress));
         this.initStatusBar();
         this.switchTab(TAB_PERSONAL);
         this.initClickListeners();
@@ -105,6 +105,7 @@ public class YLZQuickLoginActivity extends AppCompatActivity implements View.OnC
     }
 
     public void initClickListeners() {
+        this.mToolbarLeftImg.setOnClickListener(this);
         this.tabPersonalLl.setOnClickListener(this);
         this.tabUnitLl.setOnClickListener(this);
         this.smsBtn.setOnClickListener(this);
@@ -147,6 +148,9 @@ public class YLZQuickLoginActivity extends AppCompatActivity implements View.OnC
             case R.id.mztImv:
                 //TODO 跳转闽政通授权登录
                 YLZToast.showShortToast(mContext, "闽政通登录");
+                break;
+            case R.id.toolbarLeftImg:
+                finish();
                 break;
             default:
                 break;
