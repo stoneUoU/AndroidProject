@@ -12,4 +12,5 @@
     <string name="hello_blank_fragment">我的世界</string>
     <string name="app_home_title">医疗健康</string>
     <string name="app_find_title">发现</string>
+    <string name="app_news_title">资讯</string>
 </resources>

@@ -134,7 +134,7 @@ public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.
     public void initViews(View view) {
 
         mToolBarRL.setBackgroundColor(getResources().getColor(R.color.ylzLightBlueView));
-        mToolBarTitle.setText(R.string.app_home_title);
+        mToolBarTitle.setText(R.string.app_news_title);
         mToolBarTitle.setTextColor(getResources().getColor(R.color.appWhite));
 
         this.mAdapter = new YLZHomeFragmentAdapter(this.mContext,this.mDatas);
@@ -172,11 +172,6 @@ public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.
             startActivity(intent);
         }
     }
-    @Override
-    public void onItemLongClick(View view, int posi,int ids) {
-        Toast.makeText(mContext,"LongClick"+posi,Toast.LENGTH_SHORT).show();
-    }
-
     public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
         private int space;
         public SpaceItemDecoration(int space) {
@@ -191,7 +186,7 @@ public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.
     }
 
     void initJson() {
-        String responseStr = "{\"code\":1,\"data\":{\"list\":[{\"title\":\"马斯克小儿子玩具都是中国制造\",\"add_time\":\"2026-11-18 09:00:00\",\"imgs\":[\"https://js.app.meitudata.com/corp-new/image/talents/heart.@a83509f7.png\",\"https://js.app.meitudata.com/corp-new/image/talents/rocket.@e5538365.png\",\"https://js.app.meitudata.com/corp-new/image/talents/earth.@b2485c95.png\"]},{\"title\":\"特朗普:期待同习主席、普京总统会晤\",\"add_time\":\"2026-11-18 09:00:00\",\"imgs\":[\"https://js.app.meitudata.com/corp-new/image/talents/fire.@048f4693.png\",\"https://js.app.meitudata.com/corp-new/image/talents/turn.@5240bf8d.png\",\"https://js.app.meitudata.com/corp-new/image/talents/real.@d03582dd.png\"]},{\"title\":\"我们探求本质、敢说真话，不弄虚作假；同时知行合一、说到做到，不回避问题。\",\"add_time\":\"2026-11-18 09:00:00\",\"imgs\":[\"https://js.app.meitudata.com/corp-new/image/talents/heart.@a83509f7.png\",\"https://js.app.meitudata.com/corp-new/image/talents/rocket.@e5538365.png\",\"https://js.app.meitudata.com/corp-new/image/talents/earth.@b2485c95.png\"]}]}}";
+        String responseStr = "{\"code\":1,\"data\":{\"list\":[{\"title\":\"11月24日，塞尔维亚前总统武契奇在电视节目中表示，其于11月22日收到极其严重的死亡威胁。\",\"add_time\":\"2026-11-18 09:00:00\",\"imgs\":[\"https://js.app.meitudata.com/corp-new/image/talents/heart.@a83509f7.png\",\"https://js.app.meitudata.com/corp-new/image/talents/rocket.@e5538365.png\",\"https://js.app.meitudata.com/corp-new/image/talents/earth.@b2485c95.png\"]},{\"title\":\"特朗普:期待同习主席、普京总统会晤\",\"add_time\":\"2026-11-18 09:00:00\",\"imgs\":[\"https://js.app.meitudata.com/corp-new/image/talents/fire.@048f4693.png\",\"https://js.app.meitudata.com/corp-new/image/talents/turn.@5240bf8d.png\",\"https://js.app.meitudata.com/corp-new/image/talents/real.@d03582dd.png\"]},{\"title\":\"我们探求本质、敢说真话，不弄虚作假；同时知行合一、说到做到，不回避问题。\",\"add_time\":\"2026-11-18 09:00:00\",\"imgs\":[\"https://js.app.meitudata.com/corp-new/image/talents/heart.@a83509f7.png\",\"https://js.app.meitudata.com/corp-new/image/talents/rocket.@e5538365.png\",\"https://js.app.meitudata.com/corp-new/image/talents/earth.@b2485c95.png\"]}]}}";
         try {
             Log.d(TAG, responseStr);
             JSONObject responseJSON = new JSONObject(responseStr);
