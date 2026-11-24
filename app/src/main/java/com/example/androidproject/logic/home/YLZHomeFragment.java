@@ -27,6 +27,7 @@ import com.example.androidproject.base.extent.VectorBarExtent;
 import com.example.androidproject.base.layoutManage.AutoSizeLayoutManager;
 import com.example.androidproject.logic.home.adapter.YLZHomeFragmentAdapter;
 import com.example.androidproject.logic.home.model.YLZTopListModel;
+import com.example.androidproject.logic.login.YLZQuickLoginActivity;
 import com.example.androidproject.logic.mine.YLZMineActivity;
 import com.example.androidproject.logic.mine.YLZMineFragment;
 import com.google.gson.Gson;
@@ -164,7 +165,7 @@ public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.
             intent.putExtras(bundle);
             startActivity(intent);
         } else if (posi == 1) {
-            Intent intent = new Intent(mContext,YLZHomeRecycleActivity.class);
+            Intent intent = new Intent(mContext, YLZQuickLoginActivity.class);
             startActivity(intent);
         } else {
             Intent intent = new Intent(mContext, YLZMineActivity.class);

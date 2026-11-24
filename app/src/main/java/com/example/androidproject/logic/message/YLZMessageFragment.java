@@ -2,7 +2,6 @@ package com.example.androidproject.logic.message;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 
@@ -10,51 +9,27 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.androidproject.R;
 import com.example.androidproject.base.activity.YLZTabBarActivity;
-import com.example.androidproject.base.extent.APIServices;
 import com.example.androidproject.base.extent.MeasureExtent;
-import com.example.androidproject.base.extent.YLZToast;
-import com.example.androidproject.logic.home.YLZHomeActivity;
-import com.example.androidproject.logic.home.YLZHomeFragment;
-import com.example.androidproject.logic.home.YLZHomeRecycleActivity;
-import com.example.androidproject.logic.home.adapter.YLZHomeFragmentAdapter;
 import com.example.androidproject.logic.message.adapter.YLZMessageFragmentAdapter;
-import com.example.androidproject.logic.message.model.YLZHotSearchModel;
 import com.example.androidproject.logic.message.model.YLZStyleListModel;
 import com.example.androidproject.logic.message.model.YLZStyleModel;
-import com.example.androidproject.logic.mine.YLZMineActivity;
-import com.google.gson.Gson;
 import com.scwang.smart.refresh.header.BezierRadarHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 public class YLZMessageFragment extends Fragment {
 

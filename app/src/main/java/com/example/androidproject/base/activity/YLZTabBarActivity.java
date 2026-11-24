@@ -1,31 +1,17 @@
 package com.example.androidproject.base.activity;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewAnimationUtils;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.androidproject.R;
-import com.example.androidproject.base.extent.VectorBarExtent;
 import com.example.androidproject.logic.home.YLZHomeFragment;
-import com.example.androidproject.logic.home.YLZHomeRecycleActivity;
 import com.example.androidproject.logic.life.YLZLifeFragment;
 import com.example.androidproject.logic.login.YLZLoginActivity;
-import com.example.androidproject.logic.message.YLZMessageFragment;
 import com.example.androidproject.logic.mine.YLZMineFragment;
 import com.example.androidproject.logic.service.YLZServiceFragment;
 import com.next.easynavigation.view.EasyNavigationBar;
