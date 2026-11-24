@@ -1,188 +1,171 @@
 package com.example.androidproject.logic.mine.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.net.Uri;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.donkingliang.groupedadapter.adapter.GroupedRecyclerViewAdapter;
-import com.donkingliang.groupedadapter.holder.BaseViewHolder;
 import com.example.androidproject.R;
-import com.example.androidproject.base.extent.YLZToast;
-import com.example.androidproject.base.view.YLZRoundImageView;
-import com.example.androidproject.logic.mine.model.YLZModel;
-import com.youth.banner.Banner;
-import com.youth.banner.config.BannerConfig;
-import com.youth.banner.config.IndicatorConfig;
-import com.youth.banner.indicator.CircleIndicator;
-import com.youth.banner.indicator.RectangleIndicator;
-import com.youth.banner.listener.OnBannerListener;
-import com.youth.banner.util.BannerUtils;
+import com.example.androidproject.logic.home.model.YLZTopListModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class YLZMineFragmentAdapter extends GroupedRecyclerViewAdapter {
+public class YLZMineFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private List<YLZTopListModel> mDatas;
+    public LayoutInflater mInflater;
+    public Context mContext;
 
-    public List<YLZModel> brustDatas;
-    public List<YLZModel> preSellDatas;
-    public List<YLZModel> carouselDatas;
     private static final String TAG = "YLZMineFragmentAdapter";
 
-    private Context mContext;
-
-    public final int ITEM_PRESELL = 0;
-    public final int ITEM_BRUST = 1;
-
-    public final int HEADER_BANNER = 2;
-    public final int HEADER_COMMON = 3;
-
-    public CarouselCallBack carouselCallBack;//回调接口类
-
-    public interface CarouselCallBack {
-        public void clickIdx(int pos);
+    public interface OnItemClickListener {
+        void onItemClick(View view, int posi, int ids);
     }
-
-    public void setCarouselCallBack(CarouselCallBack callBackListener) {
-        this.carouselCallBack = callBackListener;
+    private YLZMineFragmentAdapter.OnItemClickListener mOnItemClickListener;
+    public void setOnItemClickListener(YLZMineFragmentAdapter.OnItemClickListener listener){
+        this.mOnItemClickListener = listener;
     }
-
-    public YLZMineFragmentAdapter(Context context,List<YLZModel> brustDatas,List<YLZModel> preSellDatas,List<YLZModel> carouselDatas) {
-        super(context);
+    public YLZMineFragmentAdapter(Context context, List<YLZTopListModel> mDatas) {
         this.mContext = context;
-        this.brustDatas = brustDatas;
-        this.preSellDatas = preSellDatas;
-        this.carouselDatas = carouselDatas;
+        this.mDatas = mDatas;
+        this.mInflater = LayoutInflater.from(mContext);
     }
 
     @Override
-    public int getGroupCount() {
-        return 2;
-    }
-
-    @Override
-    public int getChildrenCount(int groupPosi) {
-        if(groupPosi == 0){
-            return preSellDatas.size();
-        }else {
-            return brustDatas.size();
-        }
+    public int getItemViewType(int position) {
+        return position;
     }
     @Override
-    public boolean hasHeader(int groupPosition) {
-        return true;
-    }
-
-    @Override
-    public int getHeaderViewType(int groupPosition){
-        if(groupPosition == 0){
-            return HEADER_BANNER;
-        }else{
-            return HEADER_COMMON;
-        }
-    }
-
-    @Override
-    public int getHeaderLayout(int viewType) {
-        if(viewType == HEADER_BANNER){
-            return R.layout.header_for_banner_market;
-        }else{
-            return R.layout.header_for_common_market;
-        }
-    }
-
-    @Override
-    public void onBindHeaderViewHolder(BaseViewHolder holder, int groupPosition) {
-        if(groupPosition == 0){
-            Banner mBanner = holder.get(R.id.mBanner);
-            mBanner.setAdapter(new YLZBannerAdapter(this.carouselDatas));
-            mBanner.setIndicator(new CircleIndicator(mContext));
-            mBanner.setIndicatorGravity(IndicatorConfig.Direction.RIGHT);
-            mBanner.setIndicatorMargins(new IndicatorConfig.Margins(0, 0,
-                    BannerConfig.INDICATOR_MARGIN, BannerUtils.dp2px(12)));
-            mBanner.setOnBannerListener(new OnBannerListener() {
-                @Override
-                public void OnBannerClick(Object data, int position) {
-                    if(carouselCallBack!=null) {
-                        carouselCallBack.clickIdx(position);
-                    }
-                }
-            });
-            holder.setText(R.id.headerTv, "预售清单");
-        }else{
-            holder.setText(R.id.headerTv, "当日爆款");
-        }
-    }
-
-    @Override
-    public boolean hasFooter(int groupPosition) {
-        return false;
-    }
-
-    @Override
-    public int getFooterLayout(int viewType) {
-        return R.layout.footer_for_market;
-    }
-
-    @Override
-    public void onBindFooterViewHolder(BaseViewHolder holder, int groupPosition) {
-    }
-
-    @Override
-    public int getChildLayout(int viewType) {
-        if(viewType == ITEM_PRESELL){
-            return R.layout.item_for_presell_market;
-        }else{
-            return R.layout.item_for_brust_market;
-        }
+    public int getItemCount() {
+        return mDatas.size();
     }
     @Override
-    public int getChildViewType(int groupPosition, int childPosition) {
-        if(groupPosition == 0){
-            return ITEM_PRESELL;
-        }else{
-            return ITEM_BRUST;
-        }
-    }
-
-    @Override
-    public void onBindChildViewHolder(BaseViewHolder holder, int groupPosition, int childPosition) {
-        final YLZModel brustItem;
-        final YLZModel preSellItem;
-        if (groupPosition == 0) {
-            preSellItem = preSellDatas.get(childPosition);
-            holder.setText(R.id.nameTv, preSellItem.getTitle()).setText(R.id.presellTv, "预售").setText(R.id.endTimeTv, preSellItem.getTitle()).setText(R.id.priceTv, "￥ "+"30.00");
-            YLZRoundImageView IMV = (YLZRoundImageView) holder.get(R.id.imageView);
-            RequestOptions options = new RequestOptions()
-                    .centerCrop()
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .error(R.drawable.ic_launcher_background)
-                    .priority(Priority.HIGH)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE);
-            Glide.with(mContext).load(preSellItem.getPic_path()).apply(options).into(IMV);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == 0) {
+            View view = this.mInflater.inflate(R.layout.item_title_pic_view, parent, false);
+            return new YLZMineFragmentAdapter.TitlePicViewHolder(view, mContext);
+        } else if (viewType == 1) {
+            View view = this.mInflater.inflate(R.layout.item_mutli_pics_view, parent, false);
+            return new YLZMineFragmentAdapter.MutliPicsViewHolder(view, mContext);
         } else {
-            brustItem = brustDatas.get(childPosition);
-            holder.setText(R.id.nameTv, brustItem.getTitle()).setText(R.id.priceTv, "￥ "+"30.00");
-            YLZRoundImageView IMV = (YLZRoundImageView) holder.get(R.id.imageView);
+            View view = this.mInflater.inflate(R.layout.item_pic_title_view, parent, false);
+            return new YLZMineFragmentAdapter.PicTitleViewHolder(view, mContext);
+        }
+    }
+    @Override
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+        final YLZTopListModel item = mDatas.get(position);
+        if (position == 0) {
+            YLZMineFragmentAdapter.TitlePicViewHolder vh = (YLZMineFragmentAdapter.TitlePicViewHolder)holder;
+            vh.titleView.setText(item.getTitle());
+            vh.timeView.setText(String.valueOf(item.getAdd_time()));
+            vh.readView.setText("阅读："+String.valueOf(item.getReadCount()));
             RequestOptions options = new RequestOptions()
                     .centerCrop()
                     .placeholder(R.drawable.ic_launcher_background)
                     .error(R.drawable.ic_launcher_background)
                     .priority(Priority.HIGH)
                     .diskCacheStrategy(DiskCacheStrategy.NONE);
-            Glide.with(mContext).load(brustItem.getPic_path()).apply(options).into(IMV);
+            Glide.with(mContext).load(item.getImgs().get(2)).apply(options).into(vh.imageView);
+        } else if (position == 1) {
+            YLZMineFragmentAdapter.MutliPicsViewHolder vh = (YLZMineFragmentAdapter.MutliPicsViewHolder)holder;
+            vh.titleView.setText(item.getTitle());
+            vh.timeView.setText(String.valueOf(item.getAdd_time()));
+            vh.readView.setText("阅读："+String.valueOf(item.getReadCount()));
+            RequestOptions options = new RequestOptions()
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_background)
+                    .priority(Priority.HIGH)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE);
+            Glide.with(mContext).load(item.getImgs().get(0)).apply(options).into(vh.imageView0);
+            Glide.with(mContext).load(item.getImgs().get(1)).apply(options).into(vh.imageView1);
+            Glide.with(mContext).load(item.getImgs().get(2)).apply(options).into(vh.imageView2);
+        } else {
+            YLZMineFragmentAdapter.PicTitleViewHolder vh = (YLZMineFragmentAdapter.PicTitleViewHolder)holder;
+            vh.titleView.setText(item.getTitle());
+            vh.timeView.setText(String.valueOf(item.getAdd_time()));
+            vh.readView.setText("阅读："+String.valueOf(item.getReadCount()));
+            RequestOptions options = new RequestOptions()
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_background)
+                    .priority(Priority.HIGH)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE);
+            Glide.with(mContext).load(item.getImgs().get(1)).apply(options).into(vh.imageView);
+        }
+//        if(mOnItemClickListener != null){
+//            vh.itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    int layoutPosi = holder.getLayoutPosition();
+//                    mOnItemClickListener.onItemClick(((YLZMineFragmentAdapter.MutliPicsViewHolder) holder).itemView,layoutPosi,item.getId());
+//                }
+//            });
+//        }
+    }
+    static class MutliPicsViewHolder extends RecyclerView.ViewHolder {
+        TextView titleView;
+        TextView timeView;
+        TextView readView;
+
+        ImageView imageView0;
+        ImageView imageView1;
+        ImageView imageView2;
+        Context mContext;
+        public MutliPicsViewHolder(View view, Context context) {
+            super(view);
+            mContext = context;
+            imageView0 = (ImageView) view.findViewById(R.id.image0);
+            imageView1 = (ImageView) view.findViewById(R.id.image1);
+            imageView2 = (ImageView) view.findViewById(R.id.image2);
+
+            titleView = (TextView) view.findViewById(R.id.titleView);
+            timeView = (TextView) view.findViewById(R.id.timeView);
+            readView = (TextView) view.findViewById(R.id.readView);
         }
     }
 
-    public void setMDatas(List<YLZModel> preSellDatas,List<YLZModel> brustDatas,List<YLZModel> carouselDatas) {
-        this.carouselDatas = carouselDatas;
-        this.brustDatas = brustDatas;
-        this.preSellDatas = preSellDatas;
+    static class TitlePicViewHolder extends RecyclerView.ViewHolder {
+        TextView titleView;
+        TextView timeView;
+        TextView readView;
+        ImageView imageView;
+        Context mContext;
+        public TitlePicViewHolder(View view, Context context) {
+            super(view);
+            mContext = context;
+            imageView = (ImageView) view.findViewById(R.id.image);
+            titleView = (TextView) view.findViewById(R.id.titleView);
+            timeView = (TextView) view.findViewById(R.id.timeView);
+            readView = (TextView) view.findViewById(R.id.readView);
+        }
+    }
+
+    static class PicTitleViewHolder extends RecyclerView.ViewHolder {
+        TextView titleView;
+        TextView timeView;
+        TextView readView;
+        ImageView imageView;
+        Context mContext;
+        public PicTitleViewHolder(View view, Context context) {
+            super(view);
+            mContext = context;
+            imageView = (ImageView) view.findViewById(R.id.image);
+            titleView = (TextView) view.findViewById(R.id.titleView);
+            timeView = (TextView) view.findViewById(R.id.timeView);
+            readView = (TextView) view.findViewById(R.id.readView);
+        }
+    }
+    public void setMDatas(List<YLZTopListModel> datas) {
+        mDatas = datas;
         notifyDataSetChanged();
     }
 }

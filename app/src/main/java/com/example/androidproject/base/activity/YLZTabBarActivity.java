@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.androidproject.R;
-import com.example.androidproject.logic.home.YLZHomeFragment;
 import com.example.androidproject.logic.life.YLZLifeFragment;
 import com.example.androidproject.logic.login.YLZLoginActivity;
+import com.example.androidproject.logic.home.YLZHomeFragment;
 import com.example.androidproject.logic.mine.YLZMineFragment;
 import com.example.androidproject.logic.service.YLZServiceFragment;
 import com.next.easynavigation.view.EasyNavigationBar;
@@ -40,10 +40,10 @@ public class YLZTabBarActivity extends AppCompatActivity {
 
         navigationBar = findViewById(R.id.navigationBar);
 
-        fragments.add(new YLZMineFragment());
+        fragments.add(new YLZHomeFragment());
         fragments.add(new YLZServiceFragment());
         fragments.add(new YLZLifeFragment());
-        fragments.add(new YLZHomeFragment());
+        fragments.add(new YLZMineFragment());
 
         navigationBar.titleItems(tabText)
         .normalIconItems(normalIcon)

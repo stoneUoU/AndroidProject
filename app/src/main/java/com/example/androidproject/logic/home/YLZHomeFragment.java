@@ -7,78 +7,67 @@ import android.graphics.Rect;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.donkingliang.groupedadapter.adapter.GroupedRecyclerViewAdapter;
+import com.donkingliang.groupedadapter.holder.BaseViewHolder;
+import com.donkingliang.groupedadapter.layoutmanger.GroupedGridLayoutManager;
 import com.example.androidproject.R;
-import com.example.androidproject.base.extent.APIServices;
-import com.example.androidproject.base.extent.MeasureExtent;
+import com.example.androidproject.base.extent.YLZToast;
 import com.example.androidproject.base.extent.VectorBarExtent;
-import com.example.androidproject.base.layoutManage.AutoSizeLayoutManager;
-import com.example.androidproject.logic.home.adapter.YLZHomeFragmentAdapter;
-import com.example.androidproject.logic.home.model.YLZTopListModel;
 import com.example.androidproject.logic.login.YLZQuickLoginActivity;
-import com.example.androidproject.logic.mine.YLZMineActivity;
-import com.example.androidproject.logic.mine.YLZMineFragment;
-import com.google.gson.Gson;
+import com.example.androidproject.logic.home.adapter.YLZHomeFragmentAdapter;
+import com.example.androidproject.logic.mine.model.YLZModel;
 import com.scwang.smart.refresh.header.BezierRadarHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link YLZHomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.OnItemClickListener {
+public class YLZHomeFragment extends Fragment {
 
-    private YLZHomeFragmentAdapter mAdapter;
     public Context mContext;
-    private List<YLZTopListModel> mDatas;
-
-//    private final String HotSearchAPI = "/provide/news";
-//    private YLZHomeFragment.YLZHandler mHandler = new YLZHomeFragment.YLZHandler(this);
-    private static final String TAG = "YLZHomeFragment";
-
-    @BindView(R.id.toolBarTitle)
-    TextView mToolBarTitle;
-    @BindView(R.id.toolBarRL)
-    RelativeLayout mToolBarRL;
-
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
 
     @BindView(R.id.refreshLayout)
     RefreshLayout refreshLayout;
 
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
+
+    @BindView(R.id.toolBarTitle)
+    TextView toolBarTitle;
+
+    private YLZHomeFragmentAdapter mAdapter;
+    public List<YLZModel> brustDatas;
+    public List<YLZModel> preSellDatas;
+    public List<YLZModel> carouselDatas;
+
+    private YLZHomeFragment.YLZHandler mH = new YLZHomeFragment.YLZHandler(this);
+
     public YLZHomeFragment() {
     }
-    // TODO: Rename and change types and number of parameters
+
     public static YLZHomeFragment newInstance(String param1, String param2) {
         YLZHomeFragment fragment = new YLZHomeFragment();
         return fragment;
@@ -92,14 +81,13 @@ public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, null);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this,view);
         mContext = getContext();
-        this.mDatas =  new ArrayList<YLZTopListModel>();
 
         this.initViews(view);
-        this.initJson();
-
+        this.initData();
         return view;
     }
 
@@ -122,29 +110,74 @@ public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.
     }
 
     /**
-     * 状态栏颜色与ToolBar一致,并适配MIUI/Flyme状态栏字体颜色(需通过宿主Activity设置)
+     * 状态栏颜色与页面白色标题栏一致,黑色状态栏字体(需通过宿主Activity设置)
      */
     private void setupStatusBar() {
         Activity activity = getActivity();
         if (activity != null) {
-            VectorBarExtent.setStatusBarStyle(activity, getView(), R.color.ylzLightBlueView, false);
+            VectorBarExtent.setStatusBarStyle(activity, getView(), R.color.appWhite, true);
         }
+    }
+
+    public void initData() {
+        YLZModel model;
+        for (int i = 0;i<4;i++) {
+            if (i == 0) {
+                model = new YLZModel(i,"用户界面的基础结构。理解和使用不同的布局类型对于创建响应式和用户友好的界面至关重要","https://js.app.meitudata.com/corp-new/image/talents/earth.@b2485c95.png");
+            } else if (i == 1) {
+                model = new YLZModel(i,"不屑的小坦克","https://js.app.meitudata.com/corp-new/image/talents/real.@d03582dd.png");
+            } else if (i == 2) {
+                model = new YLZModel(i,"国家医保服务平台","https://js.app.meitudata.com/corp-new/image/talents/fire.@048f4693.png");
+            } else {
+                model = new YLZModel(i,"用户界面的基础结构。理解和使用不同的布局类型对于创建响应式和用户友好的界面至关重要","https://js.app.meitudata.com/corp-new/image/talents/rocket.@e5538365.png");
+            }
+
+            this.preSellDatas.add(model);
+            this.brustDatas.add(model);
+            this.carouselDatas.add(model);
+        }
+        this.mAdapter.setMDatas(this.preSellDatas, this.brustDatas,this.carouselDatas);
     }
 
     public void initViews(View view) {
 
-        mToolBarRL.setBackgroundColor(getResources().getColor(R.color.ylzLightBlueView));
-        mToolBarTitle.setText(R.string.app_news_title);
-        mToolBarTitle.setTextColor(getResources().getColor(R.color.appWhite));
+        brustDatas = new ArrayList<>();
+        preSellDatas = new ArrayList<>();
+        carouselDatas = new ArrayList<>();
 
-        this.mAdapter = new YLZHomeFragmentAdapter(this.mContext,this.mDatas);
-        this.mAdapter.setOnItemClickListener(this);
-        final AutoSizeLayoutManager layoutManager = new AutoSizeLayoutManager(this.mContext, LinearLayoutManager.VERTICAL,false);
+        mAdapter = new YLZHomeFragmentAdapter(mContext, brustDatas , preSellDatas,carouselDatas);
+        GroupedGridLayoutManager gridLayoutManager = new GroupedGridLayoutManager(mContext, 2, mAdapter){
+            @Override
+            public int getChildSpanSize(int groupPosition, int childPosition) {
+                return super.getChildSpanSize(groupPosition, childPosition);
+            }
+        };
         //设置RecyclerView布局
-        this.recyclerView.setLayoutManager(layoutManager);
-        this.recyclerView.addItemDecoration(new YLZHomeFragment.SpaceItemDecoration(30));
-        this.recyclerView.setAdapter(this.mAdapter);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(24));
+        recyclerView.setLayoutManager(gridLayoutManager);
+        mAdapter.setOnHeaderClickListener(new YLZHomeFragmentAdapter.OnHeaderClickListener() {
+            @Override
+            public void onHeaderClick(GroupedRecyclerViewAdapter adapter, BaseViewHolder holder, int groupPosition) {
+                YLZToast.showShortToast(mContext,"Header：groupPosition = " + groupPosition);
+            }
+        });
 
+        mAdapter.setOnChildClickListener(new YLZHomeFragmentAdapter.OnChildClickListener() {
+            @Override
+            public void onChildClick(GroupedRecyclerViewAdapter adapter, BaseViewHolder holder, int groupPosition, int childPosition) {
+                YLZToast.showShortToast(mContext,"Child：groupPosition = " + groupPosition + " childPosition = " + childPosition);
+                start(mContext);
+            }
+        });
+        mAdapter.setCarouselCallBack(new YLZHomeFragmentAdapter.CarouselCallBack() {
+            @Override
+            public void clickIdx(int pos) {
+                final YLZModel carouselItem;
+                carouselItem = carouselDatas.get(pos);
+                YLZToast.showShortToast(mContext,"Banner = " + carouselItem.getPic_path());
+            }
+        });
+        recyclerView.setAdapter(mAdapter);
         //设置 Header 为 贝塞尔雷达 样式
         refreshLayout.setRefreshHeader(new BezierRadarHeader(mContext).setEnableHorizontalDrag(true));
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -155,23 +188,20 @@ public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.
         });
     }
 
-    @Override
-    public void onItemClick(View view, int posi,int ids) {
-        if (posi == 0) {
-            Intent intent = new Intent(mContext,YLZHomeActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putString("name","iOS开发工程师");
-            bundle.putString("age","19");
-            intent.putExtras(bundle);
-            startActivity(intent);
-        } else if (posi == 1) {
-            Intent intent = new Intent(mContext, YLZQuickLoginActivity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = new Intent(mContext, YLZMineActivity.class);
-            startActivity(intent);
+    public static void start(Context context) {
+        Intent intent = new Intent(context, YLZQuickLoginActivity.class);
+        context.startActivity(intent);
+    }
+
+    @OnClick({R.id.toolBarTitle})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.toolBarTitle:
+                YLZToast.showShortToast(mContext, "被点击了");
+                break;
         }
     }
+
     public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
         private int space;
         public SpaceItemDecoration(int space) {
@@ -180,100 +210,53 @@ public class YLZHomeFragment extends Fragment implements YLZHomeFragmentAdapter.
         @Override
         public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
             int viewType =  parent.getAdapter().getItemViewType(parent.getChildLayoutPosition(view));
-            outRect.top = MeasureExtent.px2dip(mContext,15);
-            outRect.bottom = MeasureExtent.px2dip(mContext,30);
-        }
-    }
-
-    void initJson() {
-        String responseStr = "{\"code\":1,\"data\":{\"list\":[{\"title\":\"11月24日，塞尔维亚前总统武契奇在电视节目中表示，其于11月22日收到极其严重的死亡威胁。\",\"add_time\":\"2026-11-18 09:00:00\",\"imgs\":[\"https://js.app.meitudata.com/corp-new/image/talents/heart.@a83509f7.png\",\"https://js.app.meitudata.com/corp-new/image/talents/rocket.@e5538365.png\",\"https://js.app.meitudata.com/corp-new/image/talents/earth.@b2485c95.png\"]},{\"title\":\"特朗普:期待同习主席、普京总统会晤\",\"add_time\":\"2026-11-18 09:00:00\",\"imgs\":[\"https://js.app.meitudata.com/corp-new/image/talents/fire.@048f4693.png\",\"https://js.app.meitudata.com/corp-new/image/talents/turn.@5240bf8d.png\",\"https://js.app.meitudata.com/corp-new/image/talents/real.@d03582dd.png\"]},{\"title\":\"我们探求本质、敢说真话，不弄虚作假；同时知行合一、说到做到，不回避问题。\",\"add_time\":\"2026-11-18 09:00:00\",\"imgs\":[\"https://js.app.meitudata.com/corp-new/image/talents/heart.@a83509f7.png\",\"https://js.app.meitudata.com/corp-new/image/talents/rocket.@e5538365.png\",\"https://js.app.meitudata.com/corp-new/image/talents/earth.@b2485c95.png\"]}]}}";
-        try {
-            Log.d(TAG, responseStr);
-            JSONObject responseJSON = new JSONObject(responseStr);
-            int code = responseJSON.getInt("code");
-            JSONObject dict = responseJSON.getJSONObject("data");
-            if (code == APIServices.CODE_SUCCESS) {
-                this.mDatas.removeAll(this.mDatas);
-                JSONArray data = dict.getJSONArray("list");
-                Gson gson = new Gson();
-                YLZTopListModel model = null;
-                for (int i = 0; i < data.length(); i++) {
-                    JSONObject itemJSON = data.getJSONObject(i);
-                    model = gson.fromJson(itemJSON.toString(), YLZTopListModel.class);
-                    this.mDatas.add(model);
-                }
-                this.mAdapter.setMDatas(this.mDatas);
+            if(viewType==mAdapter.HEADER_BANNER || viewType==mAdapter.HEADER_COMMON ){
+                outRect.left = 0;
+            }else{
+                outRect.left = space;
+                outRect.right = space;
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
+    @Override
+    public void onAttach(Context context) {super.onAttach(context); }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
 
-//    private void initDatas() {
-//        try {
-//            StringBuilder realPath = new StringBuilder();
-//            realPath.append(APIServices.API_PATH)
-//                    .append(HotSearchAPI)
-//                    .append("?page=1&limit=8");
-//            APIServices.sendGetRequest(realPath.toString(), "", new Callback() {
-//                @Override
-//                public void onFailure(Call call, final IOException e) {
-//                    getActivity().runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Log.e(TAG, "onFailure" + e.getMessage());
-//                        }
-//                    });
-//                }
-//                @Override
-//                public void onResponse(Call call, Response response) throws IOException {
-//                    String responseStr = response.body().string();
-//                    Message msg = mHandler.obtainMessage();
-//                    msg.what = 0;
-//                    msg.obj = responseStr;
-//                    mHandler.sendMessage(msg);
-//                }
-//            });
-//        } catch (Exception e) {
-//            e.getMessage();
-//        }
-//    }
-//
-//    private static class YLZHandler extends Handler {
-//        private WeakReference<YLZHomeFragment> mReference;
-//        public YLZHandler(YLZHomeFragment fragment) {
-//            mReference = new WeakReference<YLZHomeFragment>(fragment);
-//        }
-//        @Override
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//            switch (msg.what) {
-//                case 0:
-//                    try {
-//                        String responseStr = (String) msg.obj;
-//                        Log.d(TAG, responseStr);
-//                        JSONObject responseJSON = new JSONObject(responseStr);
-//                        int code = responseJSON.getInt("code");
-//                        JSONObject dict = responseJSON.getJSONObject("data");
-//                        if (code == APIServices.CODE_SUCCESS) {
-//                            mReference.get().mDatas.removeAll(mReference.get().mDatas);
-//                            JSONArray data = dict.getJSONArray("list");
-//                            Gson gson = new Gson();
-//                            YLZTopListModel model = null;
-//                            for (int i = 0; i < data.length(); i++) {
-//                                JSONObject itemJSON = data.getJSONObject(i);
-//                                model = gson.fromJson(itemJSON.toString(), YLZTopListModel.class);
-//                                mReference.get().mDatas.add(model);
-//                            }
-//                            mReference.get().mAdapter.setMDatas(mReference.get().mDatas);
-//                        }
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//    }
+    private static class YLZHandler extends Handler {
+        private WeakReference<YLZHomeFragment> mReference;
+        public YLZHandler(YLZHomeFragment fragment) {
+            mReference = new WeakReference<YLZHomeFragment>(fragment);
+        }
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    try {
+                        String responseStr = (String) msg.obj;
+                        JSONObject responseJSON = new JSONObject(responseStr);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }
