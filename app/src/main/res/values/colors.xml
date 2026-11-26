@@ -21,6 +21,8 @@
     <color name="nowpay">#f7b720</color>
 
     <color name="ylzLightBlueView">#3B71E8</color>
+    <!--首页(政务版)头部蓝/状态栏蓝-->
+    <color name="hi_blue">#3E68DC</color>
     <color name="ylzColorPlace">#F7F9FD</color>
 
     <color name="ylzColorTitleOne">#303133</color>

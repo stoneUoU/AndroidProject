@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--通知条:浅灰蓝圆角-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#EFF3FA" />
+    <corners android:radius="8dp" />
+</shape>

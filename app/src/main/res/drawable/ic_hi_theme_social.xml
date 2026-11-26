@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="30dp" android:height="30dp"
+    android:viewportWidth="30" android:viewportHeight="30">
+    <!--社会保险:文档+五角星(紫色)-->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#7C6BF0" android:strokeWidth="1.6"
+        android:pathData="M7,4.5 L20,4.5 A2,2 0 0 1 22,6.5 L22,23.5 A2,2 0 0 1 20,25.5 L10,25.5 A2,2 0 0 1 8,23.5 L8,6.5 A2,2 0 0 1 10,4.5 Z M20,4.5 L20,6.5" />
+    <path
+        android:fillColor="#7C6BF0"
+        android:pathData="M15,10 L16.4,13 L19.6,13.4 L17.2,15.6 L17.9,18.8 L15,17.1 L12.1,18.8 L12.8,15.6 L10.4,13.4 L13.6,13 Z" />
+    <path
+        android:fillColor="#7C6BF0"
+        android:pathData="M11.5,21 L18.5,21 A1,1 0 0 1 18.5,23 L11.5,23 A1,1 0 0 1 11.5,21 Z" />
+</vector>

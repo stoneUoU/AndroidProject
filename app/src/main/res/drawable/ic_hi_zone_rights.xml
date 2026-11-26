@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="52dp" android:height="52dp"
+    android:viewportWidth="60" android:viewportHeight="60">
+    <!--劳动维权超市:清单板+对勾+笔(占位,可换设计切图)-->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#3D6DE0" android:strokeWidth="2"
+        android:pathData="M14,8 L46,8 A4,4 0 0 1 50,12 L50,52 A4,4 0 0 1 46,56 L10,56 A4,4 0 0 1 10,52 L10,12 A4,4 0 0 1 14,8 Z" />
+    <path
+        android:fillColor="#3D6DE0"
+        android:pathData="M22,4 L26,4 A2,2 0 0 1 28,6 L28,8 A2,2 0 0 1 26,10 L22,10 A2,2 0 0 1 22,6 L22,6 Z" />
+    <path
+        android:fillColor="#F5A623"
+        android:pathData="M14,18 L40,18 A2.5,2.5 0 0 1 40,23 L14,23 A2.5,2.5 0 0 1 14,18 Z M14,26 L32,26 A2.5,2.5 0 0 1 32,31 L14,31 A2.5,2.5 0 0 1 14,26 Z M14,34 L32,39 A2.5,2.5 0 0 1 32,36 L14,33 Z" />
+    <path
+        android:fillColor="#FFB055"
+        android:pathData="M34,30 L46,18 L52,24 L40,36 L32,38 Z" />
+</vector>

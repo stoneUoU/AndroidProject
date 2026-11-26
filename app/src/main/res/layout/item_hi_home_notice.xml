@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--通知条:喇叭+文案+更多-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/noticeBar"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginLeft="13dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginRight="13dp"
+    android:background="@drawable/bg_hi_notice"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="12dp"
+    android:paddingRight="10dp">
+
+    <ImageView
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_hi_speaker" />
+
+    <TextView
+        android:id="@+id/noticeTextTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="#5A6473"
+        android:textSize="13sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更多"
+        android:textColor="#5A6473"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginLeft="2dp"
+        android:src="@drawable/ic_service_arrow" />
+</LinearLayout>

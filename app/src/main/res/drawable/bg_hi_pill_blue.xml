@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--龙小保角标:蓝底胶囊-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#3D6DE0" />
+    <corners android:radius="99dp" />
+</shape>

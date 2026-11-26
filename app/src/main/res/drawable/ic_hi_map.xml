@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp" android:height="110dp"
+    android:viewportWidth="240" android:viewportHeight="110">
+    <!--政务地图占位:浅色底图+道路+绿地(可替换为真实地图切片)-->
+    <path
+        android:fillColor="#EDF2E9"
+        android:pathData="M0,0 L240,0 L240,110 L0,110 Z" />
+    <path
+        android:fillColor="#CBE6C4"
+        android:pathData="M150,0 L240,0 L240,55 C215,50 195,58 178,42 C170,30 175,8 150,0 Z" />
+    <path
+        android:fillColor="#CBE6C4"
+        android:pathData="M0,64 C22,58 40,66 52,80 C60,92 48,104 30,96 C16,92 4,96 0,88 Z" />
+    <path
+        android:fillColor="#BBD9F2"
+        android:pathData="M200,70 A16,12 0 1 0 200,94 A12,12 0 0 0 200,70 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#FFFFFF" android:strokeWidth="10"
+        android:strokeLineCap="round"
+        android:pathData="M0,30 L240,44 M96,0 L86,110 M0,84 L240,72" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#F5F7F2" android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M30,0 L40,110 M170,0 L160,110" />
+</vector>

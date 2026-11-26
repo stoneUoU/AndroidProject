@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--龙岩一卡通横幅:蓝色渐变圆角-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="270"
+        android:startColor="#5079E8"
+        android:endColor="#83ABF8" />
+    <corners android:radius="12dp" />
+</shape>

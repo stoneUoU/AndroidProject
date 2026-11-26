@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--主题服务-人事人才:浅青底-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#E6F7F5" />
+    <corners android:radius="12dp" />
+</shape>

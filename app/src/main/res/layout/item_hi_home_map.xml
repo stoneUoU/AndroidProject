@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--政务地图:标题行+地图占位(标签+定位)-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginRight="13dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="政务地图"
+            android:textColor="#14182B"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/mapLook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看位置"
+            android:textColor="#6B7686"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="2dp"
+            android:src="@drawable/ic_service_arrow" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/mapBox"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="13dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_hi_map" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/bg_hi_btn_white"
+            android:paddingLeft="12dp"
+            android:paddingTop="4dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="4dp"
+            android:text="政务服务网点、零工驿站"
+            android:textColor="#2E5FBF"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/ic_hi_pin" />
+    </RelativeLayout>
+</LinearLayout>

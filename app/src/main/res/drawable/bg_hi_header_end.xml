@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--头部渐变的收尾色:猜你想办条目顶部垫底,与蓝色头部无缝衔接-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#82ABF8" />
+</shape>

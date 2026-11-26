@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--首页固定顶部导航背景:头部渐变上半段(#3E68DC→#5A85EA),接缝色与列表首条目(四宫格)背景一致-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="270"
+        android:startColor="#3E68DC"
+        android:endColor="#5A85EA" />
+</shape>

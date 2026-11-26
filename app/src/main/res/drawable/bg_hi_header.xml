@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--首页顶部蓝色渐变背景-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="270"
+        android:startColor="#3E68DC"
+        android:centerColor="#5B86EC"
+        android:endColor="#82ABF8" />
+</shape>
